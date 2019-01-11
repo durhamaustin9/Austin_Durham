@@ -1,0 +1,58 @@
+/*school Style*/
+
+/*Font Style*/ 
+h2, th, p, p1  {
+  font-family: sf;
+}
+h1  {
+  font-family: sf_bold;  
+}
+/*Font Style End*/
+
+main  {
+padding-top: 100px;
+height: 4000000px;
+}
+
+.logo-img {
+  margin-top: 5px;
+}
+
+.Navbar {
+  position: fixed !important;
+  height: 100px;
+}
+
+.navbar-underly {
+  position: fixed !important;
+}
+
+.Navbar ul {
+  margin-top: 35px;
+}
+
+/*Highschool Style*/
+.highschool h1  {
+  text-align: center;
+}
+
+/*tab Style*/
+.highschool .tab {
+  overflow: hidden;
+}
+
+.highschool .tab button {
+  float: left;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  border: none;
+}
+
+.highschool .tabcontent {
+  display: none;
+  padding: 6px 12px;
+}
+/*tab Style End*/
+/*Highschool Style End*/

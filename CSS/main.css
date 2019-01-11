@@ -1,0 +1,89 @@
+/*Overlying Style*/
+
+/*Page Setup Style*/
+@font-face	{
+  font-family: sf;
+  src: url(../Fonts/SanFransico/sf.otf);
+}
+
+@font-face	{
+  font-family: sf_light;
+  src: url(../Fonts/SanFransico/sf_thin.otf);
+}
+
+@font-face  {
+  font-family: sf_bold;
+  src: url(../Fonts/SanFransico/sf_bold.otf);
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+title {
+  display: none;
+}
+/*Page Setup Style End*/
+
+main  {
+ z-index: 0; 
+}
+
+/*Navbar Stlye*/
+.Navbar {
+  min-width: 955px;
+  width: 100%;
+  z-index: 5;
+}
+
+.navbar-underly {
+  background-color: whitesmoke;
+  min-width: 955px;
+  width: 100%;
+  height: 100px;
+  z-index: -1;
+  opacity: .8;
+}
+
+.logo-img {
+    background-image: url(../Images/logo.png);
+    background-size: 79.43px 90px;
+    border-radius: 40px;
+    background-repeat: no-repeat;
+    margin-left: 23.39px;
+    height: 90px;
+    width: 78.43px;
+    float: left;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.navbariteam  {
+  height: 30px;
+  font-size: 25px;
+  display: inline;
+  font-family: sf_light;
+  max-width: 206.22px;
+}
+
+.Navbar ul {
+  margin: auto;
+  list-style-type: none;
+  
+  width: 701.3px;
+  height: 30px;
+  z-index: 3;
+}
+
+.navbariteam a {
+    
+  padding-right: 50px;
+  text-decoration: none;
+  color: black;
+}
+
+.navbariteam a:hover {
+  text-decoration: underline;
+}
+/*Navbar Style End*/

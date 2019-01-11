@@ -1,0 +1,50 @@
+ /*Homepage Style*/
+
+/*Navbar Style*/
+.Austin {
+  top: 150px;
+  height: 100px;
+  width: 100%;
+  z-index: 5;
+  position: absolute;
+  font-family: sf_bold;
+  font-size: 100px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+/*
+.navbar-background  {
+  height: 500px;
+  width: 100%;
+  z-index: 3;
+  position: absolute;
+}
+*/
+
+.logo-img {
+  margin-top: 405px;
+}
+
+.Navbar {  
+  position: absolute;
+  height: 500px;
+  background-image: url(../Images/bondrywaters_1.jpg);
+  background-size: 100% 500px;
+  background-repeat: no-repeat;
+}
+
+.Navbar ul  {
+  margin-top: 435px;
+}
+
+.navbar-underly {
+  margin-top: 400px;
+  position: absolute;
+}
+/*Navbar Style End*/
+
+main  {
+  padding-top: 500px;
+  line-height: 100px;
+}
