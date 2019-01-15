@@ -1,7 +1,7 @@
 /*school Style*/
 
 /*Font Style*/ 
-h2, th, p, p1  {
+h2, th, p, p1, p2, p3  {
   font-family: sf;
 }
 h1  {
@@ -10,25 +10,21 @@ h1  {
 /*Font Style End*/
 
 main  {
-padding-top: 100px;
-height: 4000000px;
+  min-width: 955px;
+  padding-top: 100px;
+  height: 4000000px;
 }
 
 .logo-img {
   margin-top: 5px;
 }
 
-.Navbar {
-  position: fixed !important;
-  height: 100px;
-}
-
 .navbar-underly {
   position: fixed !important;
 }
 
-.Navbar ul {
-  margin-top: 35px;
+.innerNavbar  {
+  position: fixed;
 }
 
 /*Highschool Style*/
@@ -36,8 +32,62 @@ height: 4000000px;
   text-align: center;
 }
 
+#HSsynopsis p {
+  font-size: 30px;
+}
+
+#HSsynopsis #leftColumn {
+  width: 40%;
+  height: 100%;
+  float: left;
+}
+
+#HSsynopsis #rightColumn  {
+  display: flex;
+  align-items: center;
+/*  display: block;*/
+  width: 55%;
+  height: 100%;
+  float: right;
+}
+
+#HSsynopsis #center {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  min-width: 499px;
+  min-height: 179px;
+  margin: 0 auto 0 0;
+}
+
+#HSsynopsis p3 {
+  margin: 0 auto 0 auto;
+  text-align: center;
+  float: left;
+  font-size: 30px;
+  width: 213px;
+  height: auto;
+  max-height: 72px;
+}
+
+#CS_logo  {
+  max-height: 262px;
+  height: auto;
+  width: 43%;
+  float: right;
+  margin: 0 auto 0 0;
+  
+}
+
+#HSsynopsis {
+  height: 262px;
+  margin-left: auto;
+  width: 95%;
+}
+
 /*tab Style*/
 .highschool .tab {
+  margin-top: 50px;
   overflow: hidden;
 }
 
@@ -55,4 +105,5 @@ height: 4000000px;
   padding: 6px 12px;
 }
 /*tab Style End*/
+
 /*Highschool Style End*/

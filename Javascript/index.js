@@ -4,13 +4,14 @@ $(document).ready(function()  {
     var scroll = $(this).scrollTop();
     
     if(scroll >= 400) {
-      document.getElementById("Navbar ul").style.position = "fixed";
-      document.getElementById("navbar-underly").style.position = "fixed";
+      document.getElementById("innerNavbar").style.position = "fixed";
+      document.getElementById("innerNavbar").style.marginTop = 0;
     }
     
     if(scroll < 400)  {
-      document.getElementById("Navbar").style.position = "absolute";
-      document.getElementById("navbar-underly").style.position = "absolute";
+      document.getElementById("innerNavbar").style.position = "absolute";
+      document.getElementById("innerNavbar").style.marginTop = 400;
+      
     }
     
 //    if(scroll <= 400) {
