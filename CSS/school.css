@@ -97,11 +97,20 @@ h1  {
 }
 
 /*tab Style*/
+.yearWrapper  {
+  position: absolute;
+  margin-top: 25px;
+  height: 350px;
+  width: 80%;
+  margin-left: 10%;
+}
+
 .highschool .tab {
+  position: absolute;
   float: left;
   margin-top: 50px;
   overflow: hidden;
-  max-width: 185px;
+  max-width: 165px;
 }
 
 .highschool .tab button {
@@ -110,32 +119,68 @@ h1  {
   outline: none;
   cursor: pointer;
   width: 165px;
-  margin-left: 20px;
   padding: 14px 16px;
   font-size: 20px;
   border: none;
 }
 
 .highschool .tabcontent {
+  position: absolute;
   margin-top: 50px;
-  margin-left: 255px;
-  margin-right: auto;
+  margin-left: 185px;
+
   display: none;
-  max-width: 760px;
+  min-width: 585px;
+  width: 76%;
   height: 204px;
 }
 
-.highschool .tabcontent h2  {
+.highschool .tabcontent h2, 
+.highschool .tabcontent h3   {
+  color: whitesmoke;
   font-family: sf_bold;
-  height: auto;
+  float: left;
+  
+  height: 48px;
+  font-size: 40px;
+  width: 271px;
 }
 
 .highschool .tabcontent p1  {
+  margin-top: 48px;
   font-size: 20px;
+  float: left;
   height: auto;
+  width: 271px;
+  margin-top: 20px;
 }
 
+.extracurricular  {
+  height: auto;
+  float: right;
+  width: 271px;
+}
 
+.football {
+  height: 50px;
+  width: 71px;
+  border: none;
+  background-image: url(../Images/football.png);
+}
+
+.HSbackground {
+  background-image: linear-gradient(to bottom right, #0984e0, #74b9f0
+);
+  width: 90%;
+  height: 400px;
+  position: absolute;
+  margin-left: 5%;
+}
+
+.FSynopsis {
+  height: auto;
+  width: 271px;
+}
 /*tab Style End*/
 
 /*Highschool Style End*/

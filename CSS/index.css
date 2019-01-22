@@ -28,6 +28,7 @@
 
 .innerNavbar  {
   margin-top: 400px;
+  position: absolute;
 }
 
 .outerNavbar {  
