@@ -141,8 +141,10 @@ main {
 .highschool .tabcontent {
   margin-left: auto;
   display: none;
-  min-width: 585px;
-  height: 204px;
+  width: 694.5px;
+  max-width: 984.6px;
+  height: 212px;
+  width: fit-content;
 }
 
 .highschool .tabcontent h2, 
