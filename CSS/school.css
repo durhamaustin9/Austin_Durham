@@ -17,10 +17,18 @@
 h2, th, p, p1, p2, p3  {
   font-family: sf;
 }
+
 h1  {
   font-family: sf_bold;  
 }
 /*Font Style End*/
+
+body  {
+  height: 1200px;
+  width: 100%;
+  min-width: 955px;
+}
+
 .logo-img {
   margin-top: 5px;
 }
@@ -44,7 +52,6 @@ main {
   min-width: 955px;
   margin-top: 100px;
   height: 1200px;
- 
 }
 
 .highschool {
@@ -104,7 +111,7 @@ main {
 }
 
 #HSsynopsis {
-  height: 262px;
+  height: 232px;
   margin-left: auto;
   width: 95%;
 }
@@ -117,14 +124,14 @@ main {
   border-radius: 115px;
   height: 400px;
   width: 90%;
+  margin-top: 20px;
   margin-left: 5%;
 }
 
 .highschool .tab {
-  margin: auto;
   float: left;
   overflow: hidden;
-  max-width: 165px;
+  width: 165px;
 }
 
 .highschool .tab button {
@@ -139,12 +146,12 @@ main {
 }
 
 .highschool .tabcontent {
-  margin-left: auto;
+
   display: none;
   width: 694.5px;
   max-width: 984.6px;
   height: 212px;
-  width: fit-content;
+  float: right;
 }
 
 .highschool .tabcontent h2, 
