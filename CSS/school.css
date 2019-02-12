@@ -76,7 +76,6 @@ main {
 #HSsynopsis #rightColumn  {
   display: flex;
   align-items: center;
-/*  display: block;*/
   width: 55%;
   height: 100%;
   float: right;
@@ -92,28 +91,39 @@ main {
 }
 
 #HSsynopsis p3 {
+  font-family: sf_bold;
   margin: 0 auto 0 auto;
   text-align: center;
   float: left;
   font-size: 30px;
-  width: 213px;
+  width: 231px;
   height: auto;
   max-height: 72px;
+  z-index: 3;
 }
 
 #CS_logo  {
-  max-height: 100px;
+  max-height: 232px;
   height: auto;
   width: 43%;
   float: right;
   margin: 0 auto 0 0;
-  
 }
 
 #HSsynopsis {
-  height: 232px;
+  height: 272px;
   margin-left: auto;
   width: 95%;
+}
+
+.cs_bird {
+  float: left;
+  height: 504px;
+  width: 500px;
+  position: absolute;
+  z-index: 2;
+  left: 355px;
+  top: 90px;
 }
 
 /*tab Style*/
@@ -126,32 +136,39 @@ main {
   width: 90%;
   margin-top: 20px;
   margin-left: 5%;
+
 }
 
 .highschool .tab {
+  margin-top: 94px;
   float: left;
+  margin-left: 10px;
   overflow: hidden;
-  width: 165px;
+  width: 175px;
+
 }
 
 .highschool .tab button {
+  text-shadow: 1px 1px black;
+  font-family: sf_bold;
+  border-radius: 5px;
+  color: #dfe6e0;
   float: left;
-  text-align: right;
+  text-align: center;
   outline: none;
   cursor: pointer;
-  width: 165px;
+  width: 175px;
   padding: 14px 16px;
   font-size: 20px;
   border: none;
 }
 
 .highschool .tabcontent {
-
   display: none;
-  width: 694.5px;
-  max-width: 984.6px;
-  height: 212px;
+  width: 75%;
+  margin-top: 95px;
   float: right;
+  height: 212px;
 }
 
 .highschool .tabcontent h2, 
@@ -159,10 +176,9 @@ main {
   color: whitesmoke;
   font-family: sf_bold;
   float: left;
-  
-  height: 48px;
+  height: auto;
   font-size: 40px;
-  width: 271px;
+  width: 100%;
 }
 
 .highschool .tabcontent p1  {
@@ -170,14 +186,24 @@ main {
   font-size: 20px;
   float: left;
   height: auto;
-  width: 271px;
+  width: auto;
   margin-top: 20px;
 }
 
 .extracurricular  {
+  margin-left: auto;
+  height: 100%;
+  width: 50%;
+  min-width: 282px;
+
+}
+
+.extracurricular p2 {
+  font-size: 20px;
+  float: left;
   height: auto;
-  float: right;
-  width: 271px;
+  width: auto;
+  margin-top: 20px;
 }
 
 .football {
@@ -188,9 +214,12 @@ main {
 }
 
 .FSynopsis {
+
   float: left;
-  height: 188px;
-  width: 271px;
+  height: 100%;
+  min-width: 282px;
+  max-width: 319px;
+  width: 50%;
 }
 /*tab Style End*/
 
