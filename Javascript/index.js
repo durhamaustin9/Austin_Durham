@@ -5,15 +5,17 @@ $(document).ready(function()  {
 
     if  (scroll < 400)  {
 
-      document.getElementById("innerNavbar").style.position = "absolute";
-      document.getElementById("innerNavbar").style.marginTop = "400px";
+      document.getElementById("Navbar").style.position = "absolute";
+      document.getElementById("Navbar").style.marginTop = "400px";
     }
 
     if  (scroll >= 400)  {
-      document.getElementById("innerNavbar").style.position = "fixed";
-      document.getElementById("innerNavbar").style.marginTop = "0";
+      document.getElementById("Navbar").style.position = "fixed";
+      document.getElementById("Navbar").style.marginTop = "0";
 
     }
   });
+
+
   
 });

@@ -37,12 +37,9 @@ body  {
   position: fixed !important;
 }
 
-.outerNavbar  {
-  height: 100px;
-  position: fixed;
-}
 
-.innerNavbar  {
+
+.Navbar  {
   position: fixed;
 }
 
@@ -133,10 +130,9 @@ main {
   );
   border-radius: 115px;
   height: 400px;
-  width: 90%;
+  width: 905px;
   margin-top: 20px;
-  margin-left: 5%;
-
+  right: 10px;
 }
 
 .highschool .tab {
@@ -224,3 +220,19 @@ main {
 /*tab Style End*/
 
 /*Highschool Style End*/
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+}
