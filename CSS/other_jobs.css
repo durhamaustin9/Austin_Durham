@@ -1,1 +1,35 @@
 /*other jobs Style*/
+/*Navbar Style*/
+.Navbar  {
+  position: fixed;
+}
+
+.navbar-underly {
+  position: fixed;
+}
+/*End Navbar Style*/
+
+#beginningBanner  {
+  background-image: url("../Media/Images/corperateBanner.jpg");
+  background-size: 100% auto;
+  height: 600px;
+  min-width: 360px;
+  width: 100%;
+}
+
+.blur {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  opacity: .4;
+}
+
+.banner h1  {
+  position: relative;
+  height: max-content;
+  width: max-content;
+  text-align: center;
+  margin: auto;
+  margin-top: 20%;
+}

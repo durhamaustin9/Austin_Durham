@@ -1,238 +1,226 @@
-/*school Style*/
-@font-face	{
-  font-family: "sf";
-  src: url(../Fonts/SanFransico/sf.otf) format('otf');
-}
-
-@font-face	{
-  font-family: "sf_light";
-  src: url(../Fonts/SanFransico/sf_thin.otf) format('otf');
-}
-
-@font-face {
-  font-family: "sf_bold";
-  src: url(../Fonts/SanFransico/sf_bold.otf) format('otf');
-}
-/*Font Style*/ 
-h2, th, p, p1, p2, p3  {
-  font-family: sf;
-}
-
-h1  {
-  font-family: sf_bold;  
-}
-/*Font Style End*/
-
-body  {
-  height: 1200px;
+/*Education Page Style*/
+/*Page Setup Style*/
+main {
   width: 100%;
-  min-width: 955px;
+  min-width: 360px;
+  padding-top: 100px;
+  align-items: center;
+  background: #7ad7d9;
 }
+/*End Page Setup Style*/
 
-.logo-img {
-  margin-top: 5px;
+/*Navbar Style*/
+.Navbar  {
+  position: fixed;
+  border-bottom: 2px solid black;
 }
 
 .navbar-underly {
-  position: fixed !important;
-}
-
-
-
-.Navbar  {
   position: fixed;
 }
+/*End Navbar Style*/
 
-/*Highschool Style*/
-main {
-  position: absolute;
-  min-width: 955px;
-  margin-top: 100px;
-  height: 1200px;
-}
-
-.highschool {
-  width: 100%;
-  height: 955px;
-}
-
-.highschool h1  {
-  text-align: center;
-}
-
-#HSsynopsis p {
-  font-size: 30px;
-}
-
-#HSsynopsis #leftColumn {
-  width: 40%;
-  height: 100%;
-  float: left;
-}
-
-#HSsynopsis #rightColumn  {
-  display: flex;
-  align-items: center;
-  width: 55%;
-  height: 100%;
-  float: right;
-}
-
-#HSsynopsis #center {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  min-width: 499px;
-  min-height: 179px;
-  margin: 0 auto 0 0;
-}
-
-#HSsynopsis p3 {
-  font-family: sf_bold;
-  margin: 0 auto 0 auto;
-  text-align: center;
-  float: left;
-  font-size: 30px;
-  width: 231px;
-  height: auto;
-  max-height: 72px;
-  z-index: 3;
-}
-
-#CS_logo  {
-  max-height: 232px;
-  height: auto;
-  width: 43%;
-  float: right;
-  margin: 0 auto 0 0;
-}
-
-#HSsynopsis {
-  height: 272px;
-  margin-left: auto;
-  width: 95%;
-}
-
-.cs_bird {
-  float: left;
-  height: 504px;
-  width: 500px;
-  position: absolute;
-  z-index: 2;
-  left: 355px;
-  top: 90px;
-}
-
-/*tab Style*/
-.yearWrapper  {
-  position: absolute;
-  background-image: linear-gradient(to bottom right, #0984e0, #74b9f0
-  );
-  border-radius: 115px;
-  height: 400px;
-  width: 905px;
-  margin-top: 20px;
-  right: 10px;
-}
-
-.highschool .tab {
-  margin-top: 94px;
-  float: left;
-  margin-left: 10px;
-  overflow: hidden;
-  width: 175px;
-
-}
-
-.highschool .tab button {
-  text-shadow: 1px 1px black;
-  font-family: sf_bold;
+/*highSchool Style*/
+.containerBody  {
+  box-shadow: -4px 5px 10px black;
+  background-color: whitesmoke;
   border-radius: 5px;
-  color: #dfe6e0;
-  float: left;
-  text-align: center;
-  outline: none;
-  cursor: pointer;
-  width: 175px;
-  padding: 14px 16px;
-  font-size: 20px;
-  border: none;
+  border: 1px solid black;
+  justify-content: space-evenly;
 }
 
-.highschool .tabcontent {
-  display: none;
-  width: 75%;
-  margin-top: 95px;
-  float: right;
-  height: 212px;
+#highSchool h1 {
+  width: max-content;
+  font-family: sf_pro_display_bold, sans-serif;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  z-index: 2;
 }
 
-.highschool .tabcontent h2, 
-.highschool .tabcontent h3   {
-  color: whitesmoke;
-  font-family: sf_bold;
-  float: left;
-  height: auto;
-  font-size: 40px;
-  width: 100%;
+#university h1  {
+  width: max-content;
+  font-family: sf_pro_display_bold, sans-serif;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  z-index: 2;
 }
 
-.highschool .tabcontent p1  {
-  margin-top: 48px;
-  font-size: 20px;
-  float: left;
-  height: auto;
-  width: auto;
-  margin-top: 20px;
+.underline  {
+  position: absolute;
+  height: 8px;
+  margin-top: 49px;
+  z-index: 1;
+  margin-left: 10px;
+  border-radius: 4px;
+  opacity: 0;
 }
 
-.extracurricular  {
-  margin-left: auto;
-  height: 100%;
-  width: 50%;
-  min-width: 282px;
-
+#highSchoolUnderline  {
+  width: 240px;
+  background-color: #4ac2c4;
 }
 
-.extracurricular p2 {
-  font-size: 20px;
-  float: left;
-  height: auto;
-  width: auto;
-  margin-top: 20px;
+#universityUnderline  {
+  width: 160px;
+  background-color: #f85e08;
 }
 
-.football {
-  height: 50px;
-  width: 71px;
-  border: none;
-  background-image: url(../Images/football.png);
+.leftColumn {
+  margin: auto;
+  height: 150px;
 }
 
-.FSynopsis {
-
-  float: left;
-  height: 100%;
-  min-width: 282px;
-  max-width: 319px;
-  width: 50%;
-}
-/*tab Style End*/
-
-/*Highschool Style End*/
-
-@media (min-width: 576px) {
-
+.leftColumn h2  {
+  font-family: sf_pro_display_regular, sans-serif;
 }
 
-@media (min-width: 768px) {
-
+.leftColumn p {
+  font-family: sf_pro_display_regular, sans-serif;
+  font-size: 1.1rem;
+  width: min-content;
+  min-width: 190px;
 }
 
-@media (min-width: 992px) {
-
+.leftColumn p1  {
+  font-family: sf_pro_display_regular, sans-serif;
+  font-size: 1.1rem;
 }
 
-@media (min-width: 1200px) {
-
+.centerSplit  {
+  height: 115px;
+  width: 4px;
+  background-color: black;
+  margin: auto;
+  opacity: 0;
 }
+
+.rightColumn  {
+  height: 150px;
+}
+
+.rightColumn h2 {
+  font-family: sf_pro_display_regular, sans-serif;
+}
+
+.rightColumn p  {
+  margin-top: 5%;
+  font-family: sf_pro_display_regular, sans-serif;
+  font-size: 1.1rem;
+}
+
+.rightColumn p1 {
+  font-family: sf_pro_display_regular, sans-serif;
+  font-size: 1.1rem;
+}
+/*End highSchool Style*/
+
+/*Responsive Adjust Style*/
+  @media (min-width: 360px) {
+    main  {
+      height: 1045px;
+    }
+
+    .containerBody {
+      margin: auto;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      width: 350px;
+      height: 425px;
+    }
+
+    .leftColumn {
+      margin-top: 25%;
+      width: 230px;
+    }
+
+    .rightColumn  {
+      margin-top: 8%;
+      margin: auto;
+      width: 230px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    main  {
+      height: 100%;
+    }
+
+    .containerBody  {
+      margin: auto;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      display: flex;
+      height: 325px;
+      width: 512px;
+    }
+
+    .leftColumn {
+      margin: auto;
+      width: auto;
+    }
+
+    .rightColumn  {
+      margin: auto;
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1068px) {
+    main  {
+      height: 100%;
+      display: flex;
+    }
+
+    .containerBody  {
+      height: 325px;
+      width: 512px;
+    }
+  }
+
+  @media (min-width: 1268px) {
+    .containerBody  {
+      height: 425px;
+      width: 612px;
+    }
+
+    .leftColumn {
+      height: 190px;
+    }
+
+    .leftColumn h1  {
+      font-size: 2.4rem;
+    }
+
+    .leftColumn p {
+      font-size: 1.4rem;
+      width: 245px;
+    }
+
+    .leftColumn p1  {
+      font-size: 1.4rem;
+    }
+
+    .centerSplit  {
+      height: 175px;
+    }
+
+    .rightColumn  {
+      height: 190px;
+    }
+
+    .rightColumn h1 {
+      font-size: 2.4rem;
+    }
+
+    .rightColumn p  {
+      font-size: 1.4rem;
+      width: 245px;
+    }
+
+    .rightColumn p1 {
+      font-size: 1.4rem;
+    }
+  }
+/*Responsive Adjust Style*/

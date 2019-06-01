@@ -1,0 +1,210 @@
+/*Complete Font Files*/
+/*SF Pro Fonts*/
+/*Normal*/
+@font-face {
+    font-family: sf_pro_display_black;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_black.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_heavy;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_heavy.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_bold;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_bold.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_semibold;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_semibold.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_medium;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_medium.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_regular;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_regular.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_light;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_light.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_thin;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_thin.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_ultralight;
+    src: url(../Media/Fonts/sfPro/Display1/Normal/sf_pro_display_ultralight.otf);
+}
+/*End Normal*/
+
+/*Italic*/
+@font-face {
+    font-family: sf_pro_display_blackItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_blackItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_boldItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_boldItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_heavyItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_heavyItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_semiboldItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_semiboldItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_mediumItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_mediumItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_regularItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_regularItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_lightItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_lightItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_thinItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_thinItalic.otf);
+}
+
+@font-face {
+    font-family: sf_pro_display_ultralightItalic;
+    src: url(../Media/Fonts/sfPro/Display1/Italic/sf_pro_display_ultralightItalic.otf);
+}
+/*End Italic*/
+/*End SF Pro Fonts(Primary)*/
+
+/*SF Compact(Secondary)*/
+/*Normal*/
+@font-face {
+    font-family: sf_compact_text_heavy;
+    src: url(../Media/Fonts/sfCompact/Text1/Normal/sf_compact_text_heavy.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_bold;
+    src: url(../Media/Fonts/sfCompact/Text1/Normal/sf_compact_text_bold.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_semibold;
+    src: url(../Media/Fonts/sfCompact/Text1/Normal/sf_compact_text_semibold.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_medium;
+    src: url(../Media/Fonts/sfCompact/Text1/Normal/sf_compact_text_medium.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_regular;
+    src: url(../Media/Fonts/sfCompact/Text1/Normal/sf_compact_text_regular.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_light;
+    src: url(../Media/Fonts/sfCompact/Text1/Normal/sf_compact_text_light.otf);
+}
+/*End Normal*/
+
+/*Italic*/
+@font-face {
+    font-family: sf_compact_text_heavyItalic;
+    src: url(../Media/Fonts/sfCompact/Text1/Italic/sf_compact_text_heavyItalic.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_boldItalic;
+    src: url(../Media/Fonts/sfCompact/Text1/Italic/sf_compact_text_boldItalic.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_semiboldItalic;
+    src: url(../Media/Fonts/sfCompact/Text1/Italic/sf_compact_text_semiboldItalic.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_mediumItalic;
+    src: url(../Media/Fonts/sfCompact/Text1/Italic/sf_compact_text_mediumItalic.otf);
+}
+
+@font-face {
+    font-family: sf_compact_text_regularItalic;
+    src: url(../Media/Fonts/sfCompact/Text1/Italic/sf_compact_text_regularItalic.otf);
+}
+
+@font-face {
+    font-family: compact_text_lightItalic;
+    src: url(../Media/Fonts/sfCompact/Text1/Italic/compact_text_lightItalic.otf);
+}
+/*End Italic*/
+/*End SF Compact(Secondary)*/
+
+/*SF Compact Rounded Fonts(Tertiary)*/
+@font-face {
+    font-family: compact_rounded_black;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_black.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_bold;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_bold.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_heavy;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_heavy.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_semibold;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_semibold.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_medium;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_medium.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_regular;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_regular.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_light;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_light.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_thin;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_thin.otf);
+}
+
+@font-face {
+    font-family: compact_rounded_ultralight;
+    src: url(../Media/Fonts/sfCompactRounded/compact_rounded_ultralight.otf);
+}
+/*End SF Compact Rounded Fonts(Tertiary)*/
+/*End Complete Font Files*/

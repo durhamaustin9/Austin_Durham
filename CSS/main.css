@@ -1,69 +1,50 @@
-/*Overlying Style*/
-
 /*Page Setup Style*/
-@font-face	{
-  font-family: sf;
-  src: url(../Fonts/SanFransico/sf.otf);
-}
-
-@font-face	{
-  font-family: sf_light;
-  src: url(../Fonts/SanFransico/sf_thin.otf);
-}
-
-@font-face  {
-  font-family: sf_bold;
-  src: url(../Fonts/SanFransico/sf_bold.otf);
-}
-
 * {
   margin: 0px;
   padding: 0px;
 }
 
-html  {
-  height: 2500px;
-  min-width: 360px;
-
-}
-
 title {
   display: none;
 }
-/*Page Setup Style End*/
-body  {
-  min-width: 480px;
-}
 
-main  {
-  z-index: 0;
-}
-
-/*Navbar Stlye*/
-.outerNavbar {
-  min-width: 480px;
+html  {
+  height: 100%;
   width: 100%;
-  z-index: 1;
+  min-width: 360px;
 }
 
+body  {
+  height: 100%;
+  width: 100%;
+  min-width: 360px;
+}
+/*Page Setup Style End*/
+
+/*Navbar Style*/
 .Navbar  {
   width: 100%;
+  min-width: 360px;
   height: 100px;
   z-index: 3;
 }
 
 #logo-img {
-  background-image: url(../Images/logo.png);
+  background-image: url(../Media/Images/logo.png);
   background-size: 89px 90px;
   border-radius: 44.5px;
   background-repeat: no-repeat;
   height: 90px;
   width: 89px;
   overflow: hidden;
+  margin-left: 35px;
 }
 
-
-
+#logo-img a {
+  position: absolute;
+  height: 90px;
+  width: 89px;
+}
 
 .navbar-underly {
   background-color: whitesmoke;
@@ -78,105 +59,110 @@ main  {
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  margin: 5px auto;
-  max-width: 1300px;
+  margin-top: 5px;
+  width: 100%;
   height: 90px;
+  min-width: 360px;
 }
 
-.navbariteam  {
+.navbaritem  {
   margin: auto;
   font-size: 25px;
   display: inline;
-  font-family: sf_light;
   height: 31px;
   width: auto;
+  font-family: sf_pro_display_thin;
 }
 
-.navbariteam a {
-  text-decoration: none;
-  color: black;
+.navbaritem a {
+text-decoration: none;
+color: black;
 }
 
-.navbariteam a:hover {
-  text-decoration: underline;
-}
-
-.change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
-}
-
-.change .bar2 {opacity: 0;}
-
-.change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
-}
-
-.bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #333;
-  margin: 6px 0;
-  transition: 0.4s;
+.navbaritem a:hover {
+text-decoration: underline;
 }
 
 .compressNav {
-  display: none;
-  height: 39px;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 35px;
-}
-
-.compressNav:hover  {
-  opacity: .9;
+display: none;
 }
 /*Navbar Style End*/
+
+/*main Style*/
+main  {
+  z-index: 0;
+}
+/*main Style End*/
 
 @media (min-width: 360px) {
 
 }
 
-@media (max-width: 768px) {
-  .navbariteam {
-    margin-top: 0px;
-    margin-bottom: 29.5px;
+@media (min-width: 769px) {
+  .ul {
+  height: 90px !important;
+}
 
+  .navbar-underly {
+  height: 100px !important;
+}
+}
+
+@media (max-width: 768px) {
+  .Navbar {
 
   }
 
-  #logo-img {
-    margin: initial;
-    margin-left: 15px;
+  .Navbar ul  {
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .navbaritem  {
+    display: none;
+    text-align: right;
+    margin-right: 45px;
+    margin-bottom: 29.5px;
   }
 
   .compressNav {
     display: inline-block;
     cursor: pointer;
-    margin-bottom: 0px;
+    margin-top: 30.5px;
+    margin-right: 35px;
+    float: right;
+    height: 39px;
   }
 
-  .Navbar {
-    height: 342px;
+  .compressNav:hover  {
+    opacity: .9;
   }
 
-  .Navbar ul  {
-    height: 332px;
-
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
   }
 
-  .compressNav  {
-    margin-top: 25.5px;
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+
+  .change .bar2 {
+    opacity: 0;
+  }
+
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
   }
 }
 
 @media (min-width: 992px) {
 
-}
-
-@media (min-width: 768px) {
-  #logo-img {
-    margin: auto;
-  }
 }

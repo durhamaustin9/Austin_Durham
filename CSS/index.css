@@ -1,49 +1,56 @@
 /*Homepage Style*/
-
-/*Navbar Style*/
-#Austin {
-  top: 150px;
-  min-height: 100px;
-  width: 100%;
-  z-index: 5;
-  position: absolute;
-  font-family: sf_bold;
-  font-size: 100px;
-  text-align: center;
-  color: whitesmoke;
-}
-
-/*
-.navbar-background  {
-  height: 500px;
-  width: 100%;
-  z-index: 3;
-  position: absolute;
-}
-*/
-
-
-
-.Navbar  {
-  margin-top: 400px;
-  position: absolute;
-}
-
-.outerNavbar {  
-  position: absolute;
-  height: 500px;
-  background-image: url(../Images/bondrywaters_1.jpg);
-  background-size: auto 500px;
-  overflow: hidden;
-  background-repeat: no-repeat;
-}
-
-.navbar-underly {
-  position: absolute;
-}
-/*Navbar Style End*/
-
+/*Page Setup Style*/
 main  {
   padding-top: 500px;
   line-height: 100px;
+  min-width: 360px;
+}
+/*End Page Setup Style*/
+
+/*Navbar Style*/
+#Austin {
+top: 150px;
+min-height: 100px;
+width: 100%;
+z-index: 5;
+position: absolute;
+font-family: sf_pro_display_bold;
+font-size: 100px;
+text-align: center;
+color: whitesmoke;
+}
+
+.Navbar  {
+margin-top: 400px;
+position: absolute;
+}
+
+.outerNavbar {
+position: absolute;
+height: 500px;
+width: 100%;
+min-width: 360px;
+background-image: url(../Media/Images/bondrywaters_1.jpg);
+background-size: 1765px 500px;
+overflow: hidden;
+background-repeat: no-repeat;
+z-index: 1;
+}
+
+.navbar-underly {
+position: absolute;
+}
+/*Navbar Style End*/
+
+
+@media (max-width: 375px) {
+  #Austin {
+    font-size: 80px;
+  }
+}
+
+@media (min-width: 1765px) {
+  .outerNavbar  {
+    background-size: auto 726px;
+  }
 }

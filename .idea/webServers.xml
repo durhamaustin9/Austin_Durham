@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="3ed8d94d-3890-4ab5-ab48-9e662f42b268" name="austindurham.info" url="http://austindurham.info">
-        <fileTransfer host="austindurham.info" port="22" rootFolder="/home/cyc4w752k3en/public_html" accessType="SFTP">
+      <webServer id="d5c68650-7d3e-4fec-9bc7-a9eed6d26404" name="austindurham.info" url="http://austindurham.info">
+        <fileTransfer host="austindurham.info" port="22" rootFolder="/home/cyc4w752k3en/public_html/personalSite" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

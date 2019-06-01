@@ -1,11 +1,19 @@
 <!--school Page-->
+<!DOCTYPE HTML>
 <html lang="en">
   <head>
     <title>School - Austin Durham</title>
     <meta charset="utf-8">
-    <script src="Javascript/jquery-3.3.1.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/school.css">
+    <link rel="stylesheet" href="CSS/fontLinks.css">
     <script src="Javascript/main.js"></script>
     <script src="Javascript/school.js"></script>
   </head>
@@ -13,212 +21,70 @@
   <div class="Navbar" id="Navbar">
     <div class="navbar-underly" id="navbar-underly">  </div>  <!--Navbar Underlier-->
 
-    <ul>
-      <a id="logo-img" href="index.html"> </a>
-      <li class="navbariteam"><a href="school.html">School</a></li>
-      <li class="navbariteam"><a href="boyscouts.html">Boy Scouts</a></li>
-      <li class="navbariteam"><a href="other_jobs.html">Corporate Jobs</a></li>
-      <li class="navbariteam"><a href="code.html">Coding Projects</a></li>
-      <div class="compressNav" onclick="compressNav(this)">
-        <div class="bar1" id="bar1"></div>
+    <div class="compressNav" id="compressNav" onclick="compressNav(this)">
+      <div class="bar1" id="bar1"></div>
 
-        <div class="bar2" id="bar2"></div>
+      <div class="bar2" id="bar2"></div>
 
-        <div class="bar3" id="bar3"></div>
-      </div>  <!--compressNav-->
+      <div class="bar3" id="bar3"></div>
+    </div>  <!--compressNav-->
+
+    <ul class="ul">
+      <li id="logo-img"><a href="index.html"></a></li>
+      <li class="navbaritem"><a href="school.html">School</a></li>
+      <li class="navbaritem"><a href="boyscouts.html">Boy Scouts</a></li>
+      <li class="navbaritem"><a href="other_jobs.html">Corporate Jobs</a></li>
+      <li class="navbaritem"><a href="code.html">Coding Projects</a></li>
     </ul>
   </div>  <!--innerNavbar End-->
-	
-	
+
   <main>
-    <div class="highschool" id="highschool">
+    <div class="containerBody" id="highSchool">
       <h1>High School</h1>
-      
-      <div id="HSsynopsis"> <!--HS refers to highschool-->
-        <img class="cs_bird" id="cs_bird" src="Images/CS_bird.png">
 
-        <div id="leftColumn">
-          <p>Synopsis:</p> <br>
+      <span id="highSchoolUnderline" class="underline"></span>
 
-          <p1>High School was an incredible experience with ups and down. Although I didn't enjoy all my years I got through them and in the end came out with stories that would last a lifetime, and friendships that could neve be broken, priceless.</p1> <br> <br>
+      <section class="leftColumn" id="LhsColumn">
+        <h2>General Info</h2>
 
-          <p2>Durring my High School career I compeeted in football for three years, climbed the ranks in Boyscouts, and near the end was a subway employee. With all this going on I didn't pay much attention to my grades but passed with a GPA of 2.705.</p2>
-        </div>  <!--leftColumn End-->
+        <p>2017: Graduate Of Cactus Shadows</p>
 
-        <div id="rightColumn">
+        <p1>GPA - 2.7</p1>
+      </section>
 
-          <div id="center">
-            <p3>Cactus Shadows High School</p3>
+      <span id="centerSplit" class="centerSplit"></span>
 
-            <img class="CS_logo" id="CS_logo" src="Images/CS_logo.png">
-          </div>  <!--center End-->
-        </div>  <!--rightColumn End-->
-      </div>  <!--HSsynopsis End-->
-      
-      <div class="yearWrapper" id="yearWrapper">
+      <section class="rightColumn" id="RhsColumn">
+        <h2>Extracurricular</h2>
 
-        <div class="tab">
-          <button id="freshmen" class="tablinks" >Freshmen Year</button>
-          <button id="sophmore" class="tablinks" >Sophmore Year</button>
-          <button id="junior" class="tablinks" >Junior Year</button>
-          <button id="senior" class="tablinks" >Senior Year</button> 
-        </div>  <!--tab end-->
+        <p>2013-16: Football</p>
 
-        <div id="freshmen"  class="tabcontent">
-          <div class="FSynopsis">
-            <h2>Freshmen Year</h2>
+        <p1>2010-18: BoyScouts</p1>
+      </section>
+    </div>
 
-            <p1>My Freshmen year wasn't the best of years, going in with little to no friend the transition from Middle School to High School was rough to say the least.</p1>
-          </div>
+    <div class="containerBody" id="university">
+      <h1>College</h1>
 
-          <div class="extracurricular" id="extracurricular">
-            <h3>Extracurricular</h3>
+      <span id="universityUnderline" class="underline"></span>
 
-            <p2>Football</p2>
+      <section class="leftColumn" id="LuColumn">
+        <h2>General Info</h2>
 
-            <iframe class="football" id="football">  </iframe>
-          </div>
+        <p>2018-Current: Scottsdale Community College</p>
 
-        </div>  <!--freshmen End-->
+        <p1>Area of Study: Applied Science</p1>
+      </section>
 
-        <div id="sophmore" class="tabcontent">
-          <h2>Sophmore Year</h2>
+      <span id="centerSplitUniversity" class="centerSplit"></span>
 
-          <table>
-            <tr>
-              <th>Class</th>
-              <th>Grade</th>
-              <th>Credits</th>
-            </tr>
+      <section class="rightColumn" id="RuColumn">
+        <h2>Extracurricular</h2>
 
-            <tr>
-              <th>Biology</th>
-              <th>C/D</th>
-              <th>1</th>
-            </tr>
+        <p>2019-Current: Volunteer At Local Church</p>
 
-            <tr>
-              <th>English 10</th>
-              <th>C</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Film & TV 1/2</th>
-              <th>B</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Geometry</th>
-              <th>C/B</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Spanish 1/2</th>
-              <th>B/C</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Strength & Conditioning</th>
-              <th>A/B</th>
-              <th>1</th>
-            </tr>
-          </table>
-        </div>  <!--sophmore End-->
-
-        <div id="junior" class="tabcontent">
-          <h2>Junior Year</h2>
-
-          <table>
-            <tr>
-              <th>Class</th>
-              <th>Grade</th>
-              <th>Credits</th>
-            </tr>
-
-            <tr>
-              <th>Algebra 3/4</th>
-              <th>B/C</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>American/Arizona History</th>
-              <th>C/D</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>English 11</th>
-              <th>B/C</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Physics</th>
-              <th>B/C</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Spanish 3/4</th>
-              <th>C/D</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Strength & Conditioning</th>
-              <th>A</th>
-              <th>1</th>
-            </tr>
-          </table>
-        </div>  <!--junior End-->
-
-        <div id="senior" class="tabcontent">
-          <h2>Sophmore Year</h2>
-
-          <table>
-            <tr>
-              <th>Class</th>
-              <th>Grade</th>
-              <th>Credits</th>
-            </tr>
-
-            <tr>
-              <th>American/Arizona Government</th>
-              <th>C</th>
-              <th>0.5</th>
-            </tr>
-
-            <tr>
-              <th>Guitar</th>
-              <th>A</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Pre Calculus</th>
-              <th>A</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Senior English</th>
-              <th>B</th>
-              <th>1</th>
-            </tr>
-
-            <tr>
-              <th>Economics</th>
-              <th>C</th>
-              <th>0.5</th>
-            </tr>
-          </table>
-        </div>  <!--senior End-->
-      </div>
-    </div>  <!--highschool End-->
+        <p1>testing</p1>
+      </section>
+    </div>
   </main> <!--main End-->
 </html>

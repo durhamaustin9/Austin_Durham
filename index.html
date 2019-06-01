@@ -5,9 +5,15 @@
     <title>Austin Durham</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="Javascript/jquery-3.3.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/fontLinks.css">
     <script src="Javascript/main.js"></script>
     <script src="Javascript/index.js"></script>
   </head>
@@ -19,20 +25,20 @@
   <div class="Navbar" id="Navbar">
     <div class="navbar-underly" id="navbar-underly">  </div>  <!--Navbar Underlier-->
 
-    <ul>
-      <a id="logo-img" href="index.html"> </a>
-      <li class="navbariteam"><a href="school.html">School</a></li>
-      <li class="navbariteam"><a href="boyscouts.html">Boy Scouts</a></li>
-      <li class="navbariteam"><a href="other_jobs.html">Corporate Jobs</a></li>
-      <li class="navbariteam"><a href="code.html">Coding Projects</a></li>
-      <div class="compressNav" onclick="compressNav(this)">
+    <div class="compressNav" id="compressNav" onclick="compressNav(this)">
+      <div class="bar1" id="bar1"></div>
 
-        <div class="bar1" id="bar1"></div>
+      <div class="bar2" id="bar2"></div>
 
-        <div class="bar2" id="bar2"></div>
+      <div class="bar3" id="bar3"></div>
+    </div>  <!--compressNav-->
 
-        <div class="bar3" id="bar3"></div>
-      </div>  <!--compressNav-->
+    <ul class="ul">
+      <li id="logo-img"><a href="index.html"></a></li>
+      <li class="navbaritem"><a href="school.html">School</a></li>
+      <li class="navbaritem"><a href="boyscouts.html">Boy Scouts</a></li>
+      <li class="navbaritem"><a href="other_jobs.html">Corporate Jobs</a></li>
+      <li class="navbaritem"><a href="code.html">Coding Projects</a></li>
     </ul>
   </div>  <!--innerNavbar End-->
   
