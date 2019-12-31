@@ -11,25 +11,63 @@
 
 #beginningBanner  {
   background-image: url("../Media/Images/corperateBanner.jpg");
-  background-size: 100% auto;
-  height: 600px;
+  background-size: auto;
+  height: 80vh;
   min-width: 360px;
   width: 100%;
 }
 
 .blur {
   position: absolute;
-  height: 100%;
+  height: 80vh;
   width: 100%;
-  background-color: white;
-  opacity: .4;
+  background-color: black;
+  opacity: .5;
+  z-index: 1;
 }
 
 .banner h1  {
-  position: relative;
+  position: fixed;
   height: max-content;
-  width: max-content;
-  text-align: center;
   margin: auto;
-  margin-top: 20%;
+  margin-top: 40vh;
+  left: 50%;
+  text-align: center;
+  font-family: sf_pro_display_bold, sans-serif;
+  color: whitesmoke;
+  z-index: 2;
 }
+
+/*Responsive Adjust Style*/
+@media (min-width: 360px) {
+  .banner h1  {
+    width: 332px;
+    font-size: 4.5rem;
+    margin-left: -176px;
+  }
+}
+
+@media (min-width: 768px) {
+  .banner h1  {
+    width: 678px;
+    font-size: 6rem;
+    margin-left: -339px;
+  }
+}
+
+@media (min-width: 1068px) {
+  .banner h1  {
+    width: 791px;
+    font-size: 7rem;
+    margin-left: -395.5px;
+  }
+}
+
+@media (min-width: 1268px) {
+  .banner h1  {
+    width: 791px;
+    font-size: 7rem;
+    margin-left: -395.5px;
+  }
+}
+/*End Responsive Adjust Style*/

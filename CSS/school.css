@@ -1,11 +1,14 @@
 /*Education Page Style*/
 /*Page Setup Style*/
+body  {
+  height: 1700px;
+}
+
 main {
   width: 100%;
   min-width: 360px;
   padding-top: 100px;
-  align-items: center;
-  background: #7ad7d9;
+
 }
 /*End Page Setup Style*/
 
@@ -21,98 +24,172 @@ main {
 /*End Navbar Style*/
 
 /*highSchool Style*/
-.containerBody  {
-  box-shadow: -4px 5px 10px black;
-  background-color: whitesmoke;
-  border-radius: 5px;
-  border: 1px solid black;
-  justify-content: space-evenly;
+#highSchool h1 {
+
 }
 
-#highSchool h1 {
+.titleBar {
+  width: 100%;
+  position: absolute;
+  height: max-content;
+}
+
+.titleBar h1  {
   width: max-content;
   font-family: sf_pro_display_bold, sans-serif;
-  position: absolute;
-  margin-left: 10px;
-  margin-top: 10px;
-  z-index: 2;
+  margin: 0;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  position: relative;
+  font-size: 6.5rem;
 }
 
 #university h1  {
-  width: max-content;
-  font-family: sf_pro_display_bold, sans-serif;
-  position: absolute;
-  margin-left: 10px;
-  margin-top: 10px;
-  z-index: 2;
+
+}
+
+.containerBody  {
+  background-color: whitesmoke;
+  display: flex;
+  height: 725px;
 }
 
 .underline  {
-  position: absolute;
-  height: 8px;
-  margin-top: 49px;
-  z-index: 1;
-  margin-left: 10px;
+  height: 4px;
+  z-index: 0;
   border-radius: 4px;
   opacity: 0;
+  display: block;
+  margin-top: -26px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
 #highSchoolUnderline  {
-  width: 240px;
   background-color: #4ac2c4;
+  width: 571.28px;
 }
 
 #universityUnderline  {
-  width: 160px;
   background-color: #f85e08;
+  width: 361.18px;
 }
 
-.leftColumn {
+.generalInfo {
   margin: auto;
-  height: 150px;
+  width: 50%;
+  height: max-content;
+  margin-top: 185px;
 }
 
-.leftColumn h2  {
+.generalInfo h2  {
   font-family: sf_pro_display_regular, sans-serif;
+  width: max-content;
+  margin: 0;
+  margin-right: auto;
+  margin-left: 18%;
+  margin-bottom: 20px;
+  font-size: 5rem;
 }
 
-.leftColumn p {
+.hsGradYear {
+  font-family: sf_pro_display_bold, sans-serif;
+}
+
+.generalInfo p {
   font-family: sf_pro_display_regular, sans-serif;
   font-size: 1.1rem;
-  width: min-content;
-  min-width: 190px;
+  width: 50%;
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.leftColumn p1  {
+.generalInfo p1  {
   font-family: sf_pro_display_regular, sans-serif;
-  font-size: 1.1rem;
-}
-
-.centerSplit  {
-  height: 115px;
-  width: 4px;
-  background-color: black;
+  font-size: 1.5rem;
   margin: auto;
-  opacity: 0;
+  margin-left: 18%;
+  width: 50%;
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
 }
 
-.rightColumn  {
-  height: 150px;
+.progress {
+  margin-left: 18%;
 }
 
-.rightColumn h2 {
+.progress-bar-number  {
+  font-family: sf_pro_display_medium !important;
+  color: whitesmoke;
+  font-size: 1.5rem !important;
+  width: min-content !important;
+  position: absolute;
+  align-self: center;
+  display: none;
+  top: 465px !important;
+  left: 9.5%;
+}
+
+#GPAanimate {
+  width: 300px;
+  height: 40px;
+}
+
+.extracurricular  {
+  margin: auto;
+  width: 50%;
+  height: max-content;
+  margin-top: 185px;
+}
+
+.extracurricular h2 {
   font-family: sf_pro_display_regular, sans-serif;
+  width: max-content;
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 5rem;
 }
 
-.rightColumn p  {
-  margin-top: 5%;
+.extracurricular p  {
   font-family: sf_pro_display_regular, sans-serif;
   font-size: 1.1rem;
+  width: 50%;
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.rightColumn p1 {
+.extracurricular p1 {
   font-family: sf_pro_display_regular, sans-serif;
   font-size: 1.1rem;
+  width: 50%;
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+.synopsis {
+  font-family: sf_pro_display_regular, sans-serif;
+  bottom: -45px;
+  width: 600px;
+  position: absolute;
+}
+
+.synopsis p {
+  font-size: 1.5rem;
+}
+
+.synopsis a {
+  font-family: sf_pro_display_semibold, sans-serif;
+  font-size: 2.5rem;
 }
 /*End highSchool Style*/
 
@@ -123,22 +200,15 @@ main {
     }
 
     .containerBody {
-      margin: auto;
-      margin-top: 5%;
-      margin-bottom: 5%;
-      width: 350px;
-      height: 425px;
+
     }
 
     .leftColumn {
-      margin-top: 25%;
-      width: 230px;
+
     }
 
-    .rightColumn  {
-      margin-top: 8%;
-      margin: auto;
-      width: 230px;
+    .extracurricular  {
+
     }
   }
 
@@ -148,79 +218,68 @@ main {
     }
 
     .containerBody  {
-      margin: auto;
-      margin-top: 5%;
-      margin-bottom: 5%;
-      display: flex;
-      height: 325px;
-      width: 512px;
+
     }
 
-    .leftColumn {
-      margin: auto;
-      width: auto;
+    .generalInfo {
+
     }
 
-    .rightColumn  {
-      margin: auto;
-      width: auto;
+    .extracurricular  {
+
     }
   }
 
   @media (min-width: 1068px) {
     main  {
-      height: 100%;
-      display: flex;
+
     }
 
     .containerBody  {
-      height: 325px;
-      width: 512px;
+
     }
   }
 
-  @media (min-width: 1268px) {
+  @media (max-width: 1268px) {
     .containerBody  {
-      height: 425px;
-      width: 612px;
+      display: grid;
+      height: 1000px;
     }
 
-    .leftColumn {
-      height: 190px;
+    .generalInfo {
+      width: 100%;
+      height: max-content;
+      margin-bottom: 0;
     }
 
-    .leftColumn h1  {
-      font-size: 2.4rem;
+    .generalInfo h1  {
+      width: 100%;
+      height: max-content;
+      margin-top: 0;
     }
 
-    .leftColumn p {
-      font-size: 1.4rem;
-      width: 245px;
+    .generalInfo p {
+
     }
 
-    .leftColumn p1  {
-      font-size: 1.4rem;
+    .generalInfo p1  {
+
     }
 
-    .centerSplit  {
-      height: 175px;
+    .extracurricular  {
+
     }
 
-    .rightColumn  {
-      height: 190px;
+    .extracurricular h1 {
+
     }
 
-    .rightColumn h1 {
-      font-size: 2.4rem;
+    .extracurricular p  {
+
     }
 
-    .rightColumn p  {
-      font-size: 1.4rem;
-      width: 245px;
-    }
+    .extracurricular p1 {
 
-    .rightColumn p1 {
-      font-size: 1.4rem;
     }
   }
-/*Responsive Adjust Style*/
+/*End Responsive Adjust Style*/
