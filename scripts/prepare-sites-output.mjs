@@ -7,10 +7,13 @@ const sitesOutput = resolve(projectRoot, "dist");
 const sitesServer = resolve(sitesOutput, "server");
 
 await rm(sitesOutput, { recursive: true, force: true });
-await cp(openNextOutput, sitesOutput, { recursive: true });
 await mkdir(sitesServer, { recursive: true });
+await cp(openNextOutput, sitesServer, { recursive: true });
+await cp(resolve(openNextOutput, "assets"), resolve(sitesOutput, "assets"), {
+  recursive: true,
+});
 await writeFile(
   resolve(sitesServer, "index.js"),
-  'export { default } from "../worker.js";\n',
+  'export { default } from "./worker.js";\n',
   "utf8",
 );
