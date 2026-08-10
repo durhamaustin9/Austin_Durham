@@ -67,6 +67,12 @@ test("renders Austin Durham's portfolio with standard Next.js", async () => {
   assert.match(html, /FarmFlight/);
   assert.match(html, /contact@austindurham\.info/);
   assert.match(html, /Austin-Durham-Resume\.pdf/);
+  assert.match(
+    html,
+    /href="\/Austin-Durham-Resume\.pdf"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/,
+  );
+  assert.match(html, /View résumé/);
+  assert.doesNotMatch(html, /Download résumé/);
   assert.doesNotMatch(html, /vinext|vite|codex-preview|Your site is taking shape/i);
 });
 

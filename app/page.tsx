@@ -24,7 +24,6 @@ import {
   IconCloudCode,
   IconCode,
   IconDatabase,
-  IconDownload,
   IconMail,
   IconMapPin,
   IconRoute,
@@ -213,16 +212,23 @@ export default function Home() {
                 <Button
                   component="a"
                   href="/Austin-Durham-Resume.pdf"
-                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Austin Durham's résumé in a new tab"
                   size="lg"
                   radius="xl"
                   variant="subtle"
                   color="dark"
-                  leftSection={<IconDownload size={19} stroke={1.8} />}
+                  leftSection={<IconArrowUpRight size={19} stroke={1.8} />}
                   className="resume-cta"
-                  onClick={() => posthog.capture("resume_downloaded")}
+                  onClick={() =>
+                    posthog.capture("resume_opened", {
+                      format: "pdf",
+                      placement: "hero",
+                    })
+                  }
                 >
-                  Download résumé
+                  View résumé
                 </Button>
               </Group>
 
