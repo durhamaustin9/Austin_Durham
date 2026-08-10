@@ -8,8 +8,6 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "build:cloudflare": "opennextjs-cloudflare build && node scripts/prepare-sites-output.mjs",
-    "preview:cloudflare": "opennextjs-cloudflare preview",
     "start": "next start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
@@ -30,12 +28,10 @@
   "devDependencies": {
     "@eslint/js": "9.39.4",
     "@next/eslint-plugin-next": "^16.3.0",
-    "@opennextjs/cloudflare": "^1.20.2",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "esbuild": "^0.28.2",
     "eslint": "9.39.4",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
@@ -43,8 +39,7 @@
     "globals": "16.4.0",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.59.3",
-    "wrangler": "4.92.0"
+    "typescript-eslint": "8.59.3"
   },
   "type": "module"
 }

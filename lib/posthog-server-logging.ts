@@ -39,7 +39,7 @@ export function registerPostHogServerLogging() {
     resource: resourceFromAttributes({
       "service.name": serviceName,
       "deployment.environment.name":
-        process.env.CF_PAGES_BRANCH ?? process.env.NODE_ENV ?? "unknown",
+        process.env.DEPLOYMENT_ENVIRONMENT ?? process.env.NODE_ENV ?? "unknown",
     }),
     processors: [new SimpleLogRecordProcessor({ exporter })],
   });

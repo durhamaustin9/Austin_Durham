@@ -15,7 +15,6 @@
 
 # next.js
 /.next/
-/.open-next/
 /out/
 *.tsbuildinfo
 /.posthog-wizard-cache/
@@ -39,6 +38,5 @@ yarn-error.log*
 .vercel
 
 /dist/
-/.wrangler/
 /outputs/
 /work/
