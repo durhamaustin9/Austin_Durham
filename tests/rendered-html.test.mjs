@@ -12,7 +12,11 @@ test.before(async () => {
   const nextBinary = new URL("../node_modules/next/dist/bin/next", import.meta.url);
   server = spawn(process.execPath, [nextBinary.pathname, "start", "-p", String(port)], {
     cwd: projectRoot.pathname,
-    env: { ...process.env, NODE_ENV: "production" },
+    env: {
+      ...process.env,
+      DEPLOYMENT_VERSION: "test-deployment",
+      NODE_ENV: "production",
+    },
     stdio: ["ignore", "pipe", "pipe"],
   });
 
@@ -72,4 +76,11 @@ test("keeps the résumé and Turbopack-based Next.js scripts", async () => {
   assert.match(packageJson, /"build": "next build --turbopack"/);
   assert.doesNotMatch(packageJson, /vinext|vite/i);
   await access(new URL("../public/Austin-Durham-Resume.pdf", import.meta.url));
+});
+
+test("reports the running deployment identity without caching", async () => {
+  const response = await fetch(`${url}/api/health`);
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  assert.equal(await response.text(), "test-deployment");
 });

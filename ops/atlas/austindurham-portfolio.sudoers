@@ -1,0 +1,1 @@
+austin ALL=(root) NOPASSWD: /usr/local/sbin/deploy-austindurham-portfolio

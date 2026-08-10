@@ -1,4 +1,4 @@
-name: CI
+name: CI and Deploy
 
 on:
   pull_request:
@@ -34,5 +34,111 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Build Cloudflare bundle
-        run: npm run build:cloudflare
+  deploy:
+    name: Deploy to Atlas
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: austindurham-production
+      cancel-in-progress: false
+    env:
+      DEPLOY_ROOT: /var/www/austindurham.info
+      RELEASE_ID: ${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build standalone application
+        env:
+          DEPLOYMENT_VERSION: ${{ github.sha }}
+          NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ secrets.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ vars.NEXT_PUBLIC_POSTHOG_HOST }}
+        run: |
+          set -euo pipefail
+          test -n "$NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN"
+          test -n "$NEXT_PUBLIC_POSTHOG_HOST"
+          npm run build
+
+      - name: Package release
+        run: |
+          set -euo pipefail
+          test -f .next/standalone/server.js
+
+          bundle_dir="$(mktemp -d)"
+          cp -a .next/standalone/. "$bundle_dir/"
+          mkdir -p "$bundle_dir/.next"
+          cp -a .next/static "$bundle_dir/.next/static"
+          cp -a public "$bundle_dir/public"
+          printf '%s\n' "$RELEASE_ID" > "$bundle_dir/.deployment-id"
+
+          cache_target="$DEPLOY_ROOT/shared/next-cache"
+          if [ -e "$bundle_dir/.next/cache" ]; then
+            echo "Unexpected cache path already exists in standalone output" >&2
+            exit 1
+          fi
+          ln -s "$cache_target" "$bundle_dir/.next/cache"
+
+          tar -czf portfolio-release.tgz -C "$bundle_dir" .
+
+      - name: Prepare SSH
+        run: |
+          set -euo pipefail
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.ATLAS_SSH_KEY }}" > ~/.ssh/atlas_key
+          chmod 600 ~/.ssh/atlas_key
+          printf '%s\n' "${{ secrets.ATLAS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Upload and activate release
+        env:
+          ATLAS_HOST: ${{ secrets.ATLAS_HOST }}
+          ATLAS_PORT: ${{ secrets.ATLAS_PORT }}
+          ATLAS_USER: ${{ secrets.ATLAS_USER }}
+        run: |
+          set -euo pipefail
+          test -n "$ATLAS_HOST"
+          test -n "$ATLAS_PORT"
+          test -n "$ATLAS_USER"
+
+          remote_archive="$DEPLOY_ROOT/tmp/${RELEASE_ID}.tgz"
+
+          ssh_args=(
+            -i ~/.ssh/atlas_key
+            -p "$ATLAS_PORT"
+            -o BatchMode=yes
+            -o IdentitiesOnly=yes
+            -o StrictHostKeyChecking=yes
+          )
+          scp_args=(
+            -i ~/.ssh/atlas_key
+            -P "$ATLAS_PORT"
+            -o BatchMode=yes
+            -o IdentitiesOnly=yes
+            -o StrictHostKeyChecking=yes
+          )
+
+          ssh "${ssh_args[@]}" "$ATLAS_USER@$ATLAS_HOST" \
+            "install -d -m 0755 '$DEPLOY_ROOT/tmp' '$DEPLOY_ROOT/releases'"
+          scp "${scp_args[@]}" portfolio-release.tgz \
+            "$ATLAS_USER@$ATLAS_HOST:$remote_archive"
+          ssh "${ssh_args[@]}" "$ATLAS_USER@$ATLAS_HOST" \
+            "sudo -n /usr/local/sbin/deploy-austindurham-portfolio '$RELEASE_ID' '$remote_archive'"
+
+      - name: Verify public site
+        run: |
+          deployed_release="$(curl --fail --silent --show-error \
+            --retry 10 --retry-all-errors --retry-delay 2 --max-time 10 \
+            https://austindurham.info/api/health)"
+          test "$deployed_release" = "$RELEASE_ID"

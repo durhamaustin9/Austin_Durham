@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+readonly deploy_root="/var/www/austindurham.info"
+readonly releases_root="$deploy_root/releases"
+readonly service_name="austindurham-portfolio.service"
+readonly app_user="austin"
+readonly app_group="austin"
+
+fail() {
+  printf 'Deployment failed: %s\n' "$1" >&2
+  exit 1
+}
+
+if [ "${EUID:-$(id -u)}" -ne 0 ]; then
+  fail "this command must run through sudo"
+fi
+
+release_id="${1:-}"
+archive="${2:-}"
+
+if [[ ! "$release_id" =~ ^[a-f0-9]{40}-[0-9]+-[0-9]+$ ]]; then
+  fail "invalid release identifier"
+fi
+
+archive_path="$(realpath -e -- "$archive")" || fail "release archive does not exist"
+case "$archive_path" in
+  "$deploy_root"/tmp/*.tgz) ;;
+  *) fail "release archive is outside the deployment temporary directory" ;;
+esac
+
+release_path="$releases_root/$release_id"
+if [ -e "$release_path" ]; then
+  fail "release already exists"
+fi
+
+install -d -o "$app_user" -g "$app_group" -m 0755 \
+  "$deploy_root" "$deploy_root/tmp" "$releases_root" "$deploy_root/shared/next-cache"
+install -d -o "$app_user" -g "$app_group" -m 0755 "$release_path"
+
+tar -xzf "$archive_path" --no-same-owner --no-same-permissions -C "$release_path"
+test -f "$release_path/server.js" || fail "standalone server.js is missing"
+test -f "$release_path/.deployment-id" || fail "release identity is missing"
+test -d "$release_path/.next/static" || fail "Next.js static assets are missing"
+test -d "$release_path/public" || fail "public assets are missing"
+test -L "$release_path/.next/cache" || fail "shared Next.js cache link is missing"
+
+expected_cache="$deploy_root/shared/next-cache"
+actual_cache="$(readlink "$release_path/.next/cache")"
+if [ "$actual_cache" != "$expected_cache" ]; then
+  fail "shared Next.js cache link has an unexpected target"
+fi
+
+actual_release_id="$(sed -n '1p' "$release_path/.deployment-id")"
+if [ "$actual_release_id" != "$release_id" ]; then
+  fail "release identity does not match the requested release"
+fi
+
+chown -R "$app_user:$app_group" "$release_path" "$deploy_root/shared/next-cache"
+
+previous_release=""
+if [ -L "$deploy_root/current" ]; then
+  previous_release="$(readlink -f "$deploy_root/current")"
+fi
+
+next_link="$deploy_root/.current-$release_id"
+ln -s "$release_path" "$next_link"
+mv -Tf "$next_link" "$deploy_root/current"
+
+systemctl restart "$service_name"
+
+healthy=false
+for _ in $(seq 1 30); do
+  deployed_release="$(
+    curl --fail --silent --max-time 3 http://127.0.0.1:3000/api/health \
+      2>/dev/null || true
+  )"
+  if [ "$deployed_release" = "$release_id" ]; then
+    healthy=true
+    break
+  fi
+  sleep 1
+done
+
+if [ "$healthy" != true ]; then
+  journalctl -u "$service_name" -n 80 --no-pager >&2 || true
+
+  case "$previous_release" in
+    "$releases_root"/*)
+      if [ -d "$previous_release" ]; then
+        rollback_link="$deploy_root/.rollback-$release_id"
+        ln -s "$previous_release" "$rollback_link"
+        mv -Tf "$rollback_link" "$deploy_root/current"
+        systemctl restart "$service_name"
+      fi
+      ;;
+  esac
+
+  fail "new release did not become healthy; the previous release was restored when available"
+fi
+
+unlink "$archive_path"
+
+find "$releases_root" -mindepth 1 -maxdepth 1 -type d -printf '%T@ %p\n' \
+  | sort -rn \
+  | tail -n +6 \
+  | cut -d' ' -f2- \
+  | while IFS= read -r old_release; do
+      case "$old_release" in
+        "$releases_root"/*)
+          if [ "$old_release" != "$release_path" ] && [ "$old_release" != "$previous_release" ]; then
+            rm -rf -- "$old_release"
+          fi
+          ;;
+      esac
+    done
+
+printf 'Activated release %s\n' "$release_id"

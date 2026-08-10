@@ -1,0 +1,24 @@
+[Unit]
+Description=Austin Durham portfolio
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=austin
+Group=austin
+WorkingDirectory=/var/www/austindurham.info/current
+Environment=NODE_ENV=production
+Environment=DEPLOYMENT_ENVIRONMENT=production
+Environment=HOSTNAME=127.0.0.1
+Environment=PORT=3000
+EnvironmentFile=-/etc/austindurham-portfolio.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=30
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
