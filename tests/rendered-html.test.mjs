@@ -1,32 +1,57 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-const templateRoot = new URL("../", import.meta.url);
+const projectRoot = new URL("../", import.meta.url);
+const port = 3199;
+const url = `http://127.0.0.1:${port}`;
+let server;
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+test.before(async () => {
+  const nextBinary = new URL("../node_modules/next/dist/bin/next", import.meta.url);
+  server = spawn(process.execPath, [nextBinary.pathname, "start", "-p", String(port)], {
+    cwd: projectRoot.pathname,
+    env: { ...process.env, NODE_ENV: "production" },
+    stdio: ["ignore", "pipe", "pipe"],
+  });
 
-  return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-}
+  let output = "";
+  server.stdout.on("data", (chunk) => { output += chunk.toString(); });
+  server.stderr.on("data", (chunk) => { output += chunk.toString(); });
 
-test("server-renders Austin Durham's portfolio", async () => {
-  const response = await render();
+  for (let attempt = 0; attempt < 60; attempt += 1) {
+    if (server.exitCode !== null) {
+      throw new Error(`Next.js server exited before startup:\n${output}`);
+    }
+
+    try {
+      const response = await fetch(url);
+      if (response.ok) return;
+    } catch {
+      // The server is still starting.
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  throw new Error(`Next.js server did not become ready:\n${output}`);
+});
+
+test.after(async () => {
+  if (!server || server.exitCode !== null) return;
+  server.kill("SIGTERM");
+  await new Promise((resolve) => {
+    const timeout = setTimeout(resolve, 2_000);
+    server.once("exit", () => {
+      clearTimeout(timeout);
+      resolve();
+    });
+  });
+});
+
+test("renders Austin Durham's portfolio with standard Next.js", async () => {
+  const response = await fetch(url);
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
@@ -38,12 +63,13 @@ test("server-renders Austin Durham's portfolio", async () => {
   assert.match(html, /FarmFlight/);
   assert.match(html, /contact@austindurham\.info/);
   assert.match(html, /Austin-Durham-Resume\.pdf/);
-  assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
+  assert.doesNotMatch(html, /vinext|vite|codex-preview|Your site is taking shape/i);
 });
 
-test("removes disposable starter assets and keeps the résumé download", async () => {
+test("keeps the résumé and Turbopack-based Next.js scripts", async () => {
   const packageJson = await readFile(new URL("../package.json", import.meta.url), "utf8");
-  assert.doesNotMatch(packageJson, /react-loading-skeleton|drizzle/);
+  assert.match(packageJson, /"dev": "next dev --turbopack"/);
+  assert.match(packageJson, /"build": "next build --turbopack"/);
+  assert.doesNotMatch(packageJson, /vinext|vite/i);
   await access(new URL("../public/Austin-Durham-Resume.pdf", import.meta.url));
-  await assert.rejects(access(new URL("../app/_sites-preview", templateRoot)));
 });
