@@ -17,8 +17,13 @@
   "dependencies": {
     "@mantine/core": "^9.5.1",
     "@mantine/hooks": "^9.5.1",
+    "@opentelemetry/api-logs": "^0.221.0",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.221.0",
+    "@opentelemetry/resources": "^2.10.0",
+    "@opentelemetry/sdk-logs": "^0.221.0",
     "@tabler/icons-react": "^3.46.0",
     "next": "^16.3.0",
+    "posthog-js": "^1.415.1",
     "react": "19.2.6",
     "react-dom": "19.2.6"
   },

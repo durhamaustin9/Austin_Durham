@@ -10,6 +10,9 @@ import tseslint from "typescript-eslint";
 const eslintConfig = defineConfig([
   globalIgnores([
     ".next/**",
+    ".open-next/**",
+    ".posthog-wizard-cache/**",
+    ".claude/skills/**",
     "dist/**",
     "out/**",
     "build/**",

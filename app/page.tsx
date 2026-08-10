@@ -33,6 +33,7 @@ import {
   IconSparkles,
   IconUsersGroup,
 } from "@tabler/icons-react";
+import posthog from "posthog-js";
 
 const metrics = [
   { value: "$100K+", label: "annual licensing expense eliminated" },
@@ -165,6 +166,7 @@ export default function Home() {
             size="sm"
             rightSection={<IconArrowUpRight size={16} stroke={2} />}
             className="nav-cta"
+            onClick={() => posthog.capture("contact_cta_clicked", { placement: "navigation" })}
           >
             Let&apos;s talk
           </Button>
@@ -204,6 +206,7 @@ export default function Home() {
                   radius="xl"
                   leftSection={<IconMail size={19} stroke={1.8} />}
                   className="primary-cta"
+                  onClick={() => posthog.capture("contact_cta_clicked", { placement: "hero" })}
                 >
                   Start a conversation
                 </Button>
@@ -217,6 +220,7 @@ export default function Home() {
                   color="dark"
                   leftSection={<IconDownload size={19} stroke={1.8} />}
                   className="resume-cta"
+                  onClick={() => posthog.capture("resume_downloaded")}
                 >
                   Download résumé
                 </Button>
@@ -457,6 +461,7 @@ export default function Home() {
               radius="xl"
               rightSection={<IconArrowUpRight size={20} stroke={1.8} />}
               className="contact-button"
+              onClick={() => posthog.capture("contact_cta_clicked", { placement: "footer" })}
             >
               contact@austindurham.info
             </Button>
@@ -476,6 +481,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="Austin Durham on LinkedIn"
+              onClick={() => posthog.capture("social_profile_clicked", { platform: "linkedin" })}
             >
               <IconBrandLinkedin size={20} stroke={1.7} />
             </Anchor>
@@ -484,6 +490,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
               aria-label="Austin Durham on GitHub"
+              onClick={() => posthog.capture("social_profile_clicked", { platform: "github" })}
             >
               <IconBrandGithub size={20} stroke={1.7} />
             </Anchor>
