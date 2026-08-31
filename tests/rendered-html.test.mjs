@@ -62,18 +62,36 @@ test("renders Austin Durham's portfolio with standard Next.js", async () => {
   const html = await response.text();
   assert.match(html, /<title>Austin Durham \| Full-Stack Software Engineer<\/title>/i);
   assert.match(html, /I build software that makes the business/);
+  assert.match(html, /Built to be inspected/);
+  assert.match(html, /BeatFlight/);
+  assert.match(html, /QuickCalc/);
+  assert.match(html, /PiRouter/);
+  assert.match(html, /DisplayLink clean-room research/);
+  assert.match(html, /Safe demo data/);
   assert.match(html, /Proof in production/);
   assert.match(html, /Armstrong Construction Group/);
   assert.match(html, /FarmFlight/);
   assert.match(html, /contact@austindurham\.info/);
   assert.match(html, /Austin-Durham-Resume\.pdf/);
+  const resumeLink = html.match(
+    /<a\b[^>]*href="\/Austin-Durham-Resume\.pdf"[^>]*>/,
+  )?.[0];
+  assert.ok(resumeLink, "expected a link to the résumé PDF");
+  assert.match(resumeLink, /target="_blank"/);
+  assert.match(resumeLink, /rel="noopener noreferrer"/);
+  assert.match(html, /View résumé/);
+  assert.match(html, /Skip to main content/);
+  assert.match(html, /"@type":"Person"/);
+  assert.match(html, /rel="canonical" href="https:\/\/austindurham\.info\/?"/);
+  assert.match(html, /href="https:\/\/beatflight\.austindurham\.info"/);
+  assert.match(html, /href="https:\/\/github\.com\/durhamaustin9\/CalculatorApp"/);
+  assert.match(html, /href="https:\/\/github\.com\/durhamaustin9\/PiRouter"/);
   assert.match(
     html,
-    /href="\/Austin-Durham-Resume\.pdf"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/,
+    /href="https:\/\/github\.com\/durhamaustin9\/DisplayLink-Drivers-Reconstruct"/,
   );
-  assert.match(html, /View résumé/);
   assert.doesNotMatch(html, /Download résumé/);
-  assert.doesNotMatch(html, /vinext|vite|codex-preview|Your site is taking shape/i);
+  assert.doesNotMatch(html, /vinext|vite|mantine|codex-preview|Your site is taking shape/i);
 });
 
 test("keeps the résumé and Turbopack-based Next.js scripts", async () => {
@@ -82,6 +100,22 @@ test("keeps the résumé and Turbopack-based Next.js scripts", async () => {
   assert.match(packageJson, /"build": "next build --turbopack"/);
   assert.doesNotMatch(packageJson, /vinext|vite/i);
   await access(new URL("../public/Austin-Durham-Resume.pdf", import.meta.url));
+  await access(new URL("../public/projects/beatflight.png", import.meta.url));
+});
+
+test("publishes crawlable canonical metadata without exposing API routes", async () => {
+  const robotsResponse = await fetch(`${url}/robots.txt`);
+  assert.equal(robotsResponse.status, 200);
+  const robots = await robotsResponse.text();
+  assert.match(robots, /Allow: \//);
+  assert.match(robots, /Disallow: \/api\//);
+  assert.match(robots, /Sitemap: https:\/\/austindurham\.info\/sitemap\.xml/);
+
+  const sitemapResponse = await fetch(`${url}/sitemap.xml`);
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
+  assert.match(sitemap, /<loc>https:\/\/austindurham\.info<\/loc>/);
+  assert.match(sitemap, /projects\/beatflight\.png/);
 });
 
 test("reports the running deployment identity without caching", async () => {
