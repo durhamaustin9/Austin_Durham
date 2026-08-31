@@ -103,6 +103,27 @@ test("keeps the résumé and Turbopack-based Next.js scripts", async () => {
   await access(new URL("../public/projects/beatflight.png", import.meta.url));
 });
 
+test("routes PostHog browser events through the proxy and server logs directly", async () => {
+  const [browserInstrumentation, serverLogging, exampleEnvironment] =
+    await Promise.all([
+      readFile(new URL("../instrumentation-client.ts", import.meta.url), "utf8"),
+      readFile(new URL("../lib/posthog-server-logging.ts", import.meta.url), "utf8"),
+      readFile(new URL("../.env.example", import.meta.url), "utf8"),
+    ]);
+
+  assert.match(browserInstrumentation, /ui_host:\s*uiHost/);
+  assert.match(browserInstrumentation, /defaults:\s*"2026-05-30"/);
+  assert.match(
+    exampleEnvironment,
+    /NEXT_PUBLIC_POSTHOG_HOST=https:\/\/b\.austindurham\.info/,
+  );
+  assert.match(serverLogging, /process\.env\.POSTHOG_LOGS_HOST/);
+  assert.doesNotMatch(serverLogging, /NEXT_PUBLIC_POSTHOG_HOST/);
+  assert.match(serverLogging, /\/i\/v1\/logs/);
+  assert.doesNotMatch(serverLogging, /\/otlp\/v1\/logs/);
+  assert.match(serverLogging, /"Content-Type":\s*"application\/json"/);
+});
+
 test("publishes crawlable canonical metadata without exposing API routes", async () => {
   const robotsResponse = await fetch(`${url}/robots.txt`);
   assert.equal(robotsResponse.status, 200);

@@ -39,8 +39,13 @@ Create `/etc/austindurham-portfolio.env` with mode `0600`:
 
 ```dotenv
 NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN=your_posthog_project_token
-NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+POSTHOG_LOGS_HOST=https://us.i.posthog.com
 ```
+
+The project token is also available to the Node.js process for authenticated
+server-log export. Browser-facing `NEXT_PUBLIC_*` configuration is embedded by
+Next.js during the GitHub Actions build, so changing it only on Atlas does not
+change the deployed browser bundle.
 
 Confirm Atlas's ED25519 SSH host-key fingerprint before authorizing the runner:
 
@@ -85,7 +90,10 @@ The repository requires these Actions secrets:
 - `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN`
 
 It also requires the repository variable
-`NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com`.
+`NEXT_PUBLIC_POSTHOG_HOST=https://b.austindurham.info`. The build config keeps
+`NEXT_PUBLIC_POSTHOG_UI_HOST=https://us.posthog.com` for links back to the
+PostHog interface, while server logs use the direct US collector at
+`https://us.i.posthog.com/i/v1/logs`.
 
 After the server setup is complete, merge the deployment pull request into
 `master`. The first push to `master` starts the deployment automatically.
