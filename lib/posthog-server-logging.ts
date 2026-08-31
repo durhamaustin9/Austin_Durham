@@ -2,11 +2,12 @@ import { SeverityNumber, type Logger } from "@opentelemetry/api-logs";
 import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 import { resourceFromAttributes } from "@opentelemetry/resources";
 import {
+  BatchLogRecordProcessor,
   LoggerProvider,
-  SimpleLogRecordProcessor,
 } from "@opentelemetry/sdk-logs";
 
 const serviceName = "austin-durham-portfolio";
+const defaultPostHogLogsHost = "https://us.i.posthog.com";
 
 declare global {
   var __posthogLogger: Logger | undefined;
@@ -19,19 +20,20 @@ export function registerPostHogServerLogging() {
   }
 
   const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
-  const apiHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+  const logsHost = process.env.POSTHOG_LOGS_HOST ?? defaultPostHogLogsHost;
 
-  if (!projectToken || !apiHost) {
+  if (!projectToken) {
     console.warn(
-      "PostHog server logging is disabled because its project token or host is missing.",
+      "PostHog server logging is disabled because its project token is missing.",
     );
     return undefined;
   }
 
   const exporter = new OTLPLogExporter({
-    url: `${apiHost.replace(/\/$/, "")}/otlp/v1/logs`,
+    url: `${logsHost.replace(/\/+$/, "")}/i/v1/logs`,
     headers: {
       Authorization: `Bearer ${projectToken}`,
+      "Content-Type": "application/json",
     },
   });
 
@@ -41,7 +43,12 @@ export function registerPostHogServerLogging() {
       "deployment.environment.name":
         process.env.DEPLOYMENT_ENVIRONMENT ?? process.env.NODE_ENV ?? "unknown",
     }),
-    processors: [new SimpleLogRecordProcessor({ exporter })],
+    processors: [
+      new BatchLogRecordProcessor({
+        exporter,
+        scheduledDelayMillis: 1_000,
+      }),
+    ],
   });
 
   const logger = loggerProvider.getLogger(serviceName);
