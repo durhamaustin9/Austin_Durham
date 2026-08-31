@@ -1,19 +1,4 @@
-"use client";
-
-import {
-  Anchor,
-  Badge,
-  Box,
-  Button,
-  Container,
-  Group,
-  Paper,
-  SimpleGrid,
-  Stack,
-  Text,
-  ThemeIcon,
-  Title,
-} from "@mantine/core";
+import Image from "next/image";
 import {
   IconArrowDown,
   IconArrowUpRight,
@@ -24,15 +9,23 @@ import {
   IconCloudCode,
   IconCode,
   IconDatabase,
+  IconDeviceDesktop,
+  IconExternalLink,
+  IconFileDescription,
+  IconFlask2,
   IconMail,
   IconMapPin,
+  IconPlayerPlay,
   IconRoute,
+  IconRouter,
   IconServer2,
   IconShieldCheck,
   IconSparkles,
+  IconTerminal2,
   IconUsersGroup,
 } from "@tabler/icons-react";
-import posthog from "posthog-js";
+import { PiRouterDemo, QuickCalcDemo } from "@/components/project-demos";
+import { TrackedLink } from "@/components/tracked-link";
 
 const metrics = [
   { value: "$100K+", label: "annual licensing expense eliminated" },
@@ -142,368 +135,550 @@ const foundations = [
   },
 ];
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Austin Durham",
+  url: "https://austindurham.info",
+  jobTitle: "Full-Stack Software Engineer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Scottsdale",
+    addressRegion: "AZ",
+    addressCountry: "US",
+  },
+  sameAs: [
+    "https://github.com/durhamaustin9",
+    "https://www.linkedin.com/in/austin-durham-031473186/",
+  ],
+  knowsAbout: [
+    "Full-stack software engineering",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "PostgreSQL",
+    "AWS",
+    "Cloud infrastructure",
+    "Business systems",
+  ],
+};
+
 export default function Home() {
   return (
-    <Box component="main" className="site-shell">
+    <div className="site-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+
       <header className="topbar">
-        <Container size="xl" className="topbar-inner">
-          <Anchor href="#top" className="wordmark" underline="never">
-            <span>AD</span>
+        <div className="site-container topbar-inner">
+          <a href="#top" className="wordmark" aria-label="Austin Durham, back to top">
+            <span aria-hidden="true">AD</span>
             Austin Durham
-          </Anchor>
-
+          </a>
           <nav className="nav-links" aria-label="Primary navigation">
-            <Anchor href="#work" underline="never">Work</Anchor>
-            <Anchor href="#experience" underline="never">Experience</Anchor>
-            <Anchor href="#capabilities" underline="never">Capabilities</Anchor>
+            <a href="#projects">Projects</a>
+            <a href="#impact">Impact</a>
+            <a href="#experience">Experience</a>
+            <a href="#capabilities">Capabilities</a>
           </nav>
-
-          <Button
-            component="a"
+          <TrackedLink
             href="mailto:contact@austindurham.info"
-            radius="xl"
-            size="sm"
-            rightSection={<IconArrowUpRight size={16} stroke={2} />}
-            className="nav-cta"
-            onClick={() => posthog.capture("contact_cta_clicked", { placement: "navigation" })}
+            className="button nav-cta"
+            eventName="contact_cta_clicked"
+            eventProperties={{ placement: "navigation" }}
           >
             Let&apos;s talk
-          </Button>
-        </Container>
+            <IconArrowUpRight size={16} stroke={2} aria-hidden="true" />
+          </TrackedLink>
+        </div>
       </header>
 
-      <section id="top" className="hero-section">
-        <Container size="xl">
-          <div className="hero-grid">
-            <Stack gap={0} className="hero-copy">
-              <Badge
-                variant="outline"
-                radius="xl"
-                size="lg"
-                leftSection={<span className="status-dot" />}
-                className="hero-badge"
-              >
-                FULL-STACK SOFTWARE ENGINEER
-              </Badge>
+      <main id="main-content">
+        <section id="top" className="hero-section" aria-labelledby="hero-title">
+          <div className="site-container">
+            <div className="hero-grid">
+              <div className="hero-copy">
+                <p className="hero-badge">
+                  <span className="status-dot" aria-hidden="true" />
+                  FULL-STACK SOFTWARE ENGINEER
+                </p>
+                <h1 id="hero-title" className="hero-title">
+                  I build software that makes the business<span> run better.</span>
+                </h1>
+                <p className="hero-lede">
+                  I&apos;m Austin—a full-stack engineer and technology operations
+                  leader who turns complicated workflows into reliable products,
+                  cloud services, and measurable business outcomes.
+                </p>
+                <div className="hero-actions">
+                  <a href="#projects" className="button primary-cta">
+                    <IconCode size={19} stroke={1.8} aria-hidden="true" />
+                    See public work
+                  </a>
+                  <TrackedLink
+                    href="/Austin-Durham-Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button resume-cta"
+                    eventName="resume_opened"
+                    eventProperties={{ format: "pdf", placement: "hero" }}
+                    aria-label="Open Austin Durham's résumé in a new tab"
+                  >
+                    <IconFileDescription size={19} stroke={1.8} aria-hidden="true" />
+                    View résumé
+                  </TrackedLink>
+                </div>
+                <div className="location-line">
+                  <IconMapPin size={17} stroke={1.8} aria-hidden="true" />
+                  <span>Scottsdale, Arizona</span>
+                  <i aria-hidden="true" />
+                  <span>Cloud, platform & business systems</span>
+                </div>
+              </div>
 
-              <Title order={1} className="hero-title">
-                I build software that makes the business
-                <span> run better.</span>
-              </Title>
+              <aside className="outcomes-panel" aria-label="Selected engineering outcomes">
+                <div className="panel-topline">
+                  <div>
+                    <span className="eyebrow">SELECTED OUTCOMES</span>
+                    <p>Engineering measured in impact.</p>
+                  </div>
+                  <span className="spark-icon" aria-hidden="true">
+                    <IconSparkles size={21} stroke={1.7} />
+                  </span>
+                </div>
+                <div className="metrics-grid">
+                  {metrics.map((metric) => (
+                    <div className="metric-card" key={metric.value}>
+                      <strong>{metric.value}</strong>
+                      <span>{metric.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="panel-footnote">
+                  <span className="live-line" aria-hidden="true" />
+                  Production work across applications, APIs, data, and IT systems
+                </div>
+              </aside>
+            </div>
+            <a href="#projects" className="scroll-cue">
+              Explore the builds <IconArrowDown size={17} stroke={1.7} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
 
-              <Text className="hero-lede">
-                I&apos;m Austin—a full-stack engineer and technology operations
-                leader who turns complicated workflows into reliable products,
-                cloud services, and measurable business outcomes.
-              </Text>
+        <section id="projects" className="section-block projects-section" aria-labelledby="projects-title">
+          <div className="site-container">
+            <div className="section-heading-row">
+              <div>
+                <span className="section-index">01 / PUBLIC WORK</span>
+                <h2 id="projects-title">Built to be inspected.</h2>
+              </div>
+              <p>
+                Four public repositories spanning product engineering, native
+                desktop development, infrastructure, and clean-room systems
+                research—with honest demos for work that cannot safely be hosted.
+              </p>
+            </div>
 
-              <Group gap="md" className="hero-actions">
-                <Button
-                  component="a"
-                  href="mailto:contact@austindurham.info"
-                  size="lg"
-                  radius="xl"
-                  leftSection={<IconMail size={19} stroke={1.8} />}
-                  className="primary-cta"
-                  onClick={() => posthog.capture("contact_cta_clicked", { placement: "hero" })}
-                >
-                  Start a conversation
-                </Button>
-                <Button
-                  component="a"
-                  href="/Austin-Durham-Resume.pdf"
+            <div className="project-grid">
+              <article className="project-card beatflight-card">
+                <div className="project-copy">
+                  <div className="project-kicker">
+                    <span className="project-number">01</span>
+                    <span className="demo-badge live">LIVE WEB APP</span>
+                  </div>
+                  <div className="project-title-row">
+                    <IconPlayerPlay size={28} stroke={1.6} aria-hidden="true" />
+                    <h3>BeatFlight</h3>
+                  </div>
+                  <p className="project-summary">
+                    A music-reactive, one-button browser rhythm game where every
+                    track shapes the timing, visuals, and challenge of the run.
+                    Local audio analysis stays in the browser.
+                  </p>
+                  <dl className="project-facts">
+                    <div>
+                      <dt>Built with</dt>
+                      <dd>Next.js · TypeScript · Canvas · Web Audio API</dd>
+                    </div>
+                    <div>
+                      <dt>Engineering signal</dt>
+                      <dd>Deterministic engine tests, live audio sync, privacy-first local analysis</dd>
+                    </div>
+                  </dl>
+                  <div className="project-actions">
+                    <TrackedLink
+                      href="https://beatflight.austindurham.info"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button project-primary"
+                      eventName="project_link_clicked"
+                      eventProperties={{ project: "beatflight", destination: "live" }}
+                    >
+                      Play BeatFlight
+                      <IconExternalLink size={17} stroke={1.8} aria-hidden="true" />
+                    </TrackedLink>
+                    <TrackedLink
+                      href="https://github.com/durhamaustin9/BeatFlight"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link"
+                      eventName="project_link_clicked"
+                      eventProperties={{ project: "beatflight", destination: "source" }}
+                    >
+                      <IconBrandGithub size={18} stroke={1.8} aria-hidden="true" />
+                      View source
+                    </TrackedLink>
+                  </div>
+                </div>
+                <a
+                  className="beatflight-visual"
+                  href="https://beatflight.austindurham.info"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Open Austin Durham's résumé in a new tab"
-                  size="lg"
-                  radius="xl"
-                  variant="subtle"
-                  color="dark"
-                  leftSection={<IconArrowUpRight size={19} stroke={1.8} />}
-                  className="resume-cta"
-                  onClick={() =>
-                    posthog.capture("resume_opened", {
-                      format: "pdf",
-                      placement: "hero",
-                    })
-                  }
+                  aria-label="Play BeatFlight in a new tab"
                 >
-                  View résumé
-                </Button>
-              </Group>
+                  <Image
+                    src="/projects/beatflight.png"
+                    alt="BeatFlight game artwork showing a neon spacecraft flying through music-reactive gates"
+                    width={1200}
+                    height={630}
+                    sizes="(max-width: 900px) 100vw, 58vw"
+                  />
+                  <span>
+                    Open live game
+                    <IconArrowUpRight size={17} stroke={1.8} aria-hidden="true" />
+                  </span>
+                </a>
+              </article>
 
-              <Group gap="xs" className="location-line">
-                <IconMapPin size={17} stroke={1.8} />
-                <Text component="span">Scottsdale, Arizona</Text>
-                <span className="location-divider" />
-                <Text component="span">Cloud, platform & business systems</Text>
-              </Group>
-            </Stack>
-
-            <Paper className="outcomes-panel" radius="xl">
-              <div className="panel-topline">
-                <div>
-                  <span className="eyebrow">SELECTED OUTCOMES</span>
-                  <Text>Engineering measured in impact.</Text>
-                </div>
-                <ThemeIcon radius="xl" size={42} className="spark-icon">
-                  <IconSparkles size={21} stroke={1.7} />
-                </ThemeIcon>
-              </div>
-
-              <SimpleGrid cols={{ base: 1, xs: 2 }} spacing="md" className="metrics-grid">
-                {metrics.map((metric) => (
-                  <div className="metric-card" key={metric.value}>
-                    <strong>{metric.value}</strong>
-                    <span>{metric.label}</span>
+              <article className="project-card quickcalc-card">
+                <div className="project-copy">
+                  <div className="project-kicker">
+                    <span className="project-number">02</span>
+                    <span className="demo-badge">INTERACTIVE SAMPLER</span>
                   </div>
-                ))}
-              </SimpleGrid>
-
-              <div className="panel-footnote">
-                <span className="live-line" />
-                Production work across applications, APIs, data, and IT systems
-              </div>
-            </Paper>
-          </div>
-
-          <Anchor href="#work" className="scroll-cue" underline="never">
-            Explore the work <IconArrowDown size={17} stroke={1.7} />
-          </Anchor>
-        </Container>
-      </section>
-
-      <section id="work" className="section-block work-section">
-        <Container size="xl">
-          <div className="section-heading-row">
-            <div>
-              <span className="section-index">01 / SELECTED IMPACT</span>
-              <Title order={2}>Proof in production.</Title>
-            </div>
-            <Text>
-              The strongest engineering work connects technical decisions to
-              outcomes people can see, use, and measure.
-            </Text>
-          </div>
-
-          <SimpleGrid cols={{ base: 1, md: 3 }} spacing="lg" className="impact-grid">
-            {impactStories.map((story) => {
-              const StoryIcon = story.icon;
-              return (
-                <Paper className="impact-card" radius="lg" key={story.number}>
-                  <div className="impact-card-top">
-                    <ThemeIcon size={48} radius="md" variant="light" className="impact-icon">
-                      <StoryIcon size={24} stroke={1.6} />
-                    </ThemeIcon>
-                    <span>{story.number}</span>
+                  <div className="project-title-row">
+                    <IconDeviceDesktop size={26} stroke={1.6} aria-hidden="true" />
+                    <h3>QuickCalc</h3>
                   </div>
-                  <span className="eyebrow">{story.eyebrow}</span>
-                  <Title order={3}>{story.title}</Title>
-                  <Text>{story.description}</Text>
-                  <Group gap={7} className="stack-tags">
-                    {story.stack.map((item) => (
-                      <Badge key={item} variant="outline" radius="xl" size="sm">
-                        {item}
-                      </Badge>
-                    ))}
-                  </Group>
-                </Paper>
-              );
-            })}
-          </SimpleGrid>
-        </Container>
-      </section>
-
-      <section id="experience" className="section-block experience-section">
-        <Container size="xl">
-          <div className="section-heading-row">
-            <div>
-              <span className="section-index">02 / EXPERIENCE</span>
-              <Title order={2}>Built across the stack.</Title>
-            </div>
-            <Text>
-              Four-plus years of professional engineering experience, grounded
-              in an earlier career of customer service and operational ownership.
-            </Text>
-          </div>
-
-          <div className="timeline">
-            {roles.map((role, roleIndex) => (
-              <article className="timeline-row" key={role.company}>
-                <div className="timeline-date">
-                  <span>{role.date}</span>
-                  <span className="timeline-node" aria-hidden="true" />
-                </div>
-                <div className="timeline-content">
-                  <div className="role-heading">
-                    <div>
-                      <Title order={3}>{role.title}</Title>
-                      <Group gap={7} className="company-line">
-                        <IconBuildingSkyscraper size={16} stroke={1.8} />
-                        <Text component="span">{role.company}</Text>
-                        <span>·</span>
-                        <Text component="span">{role.location}</Text>
-                      </Group>
-                    </div>
-                    <span className="role-count">0{roleIndex + 1}</span>
-                  </div>
-                  <Text className="role-intro">{role.intro}</Text>
-                  <ul className="role-bullets">
-                    {role.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                  <p className="project-summary">
+                    A compact native calculator for macOS, Windows, and Linux,
+                    built with modern C#, .NET 10, and Avalonia 12. The sampler
+                    reproduces the public desktop interaction model in-browser.
+                  </p>
+                  <ul className="proof-list">
+                    <li>Chained operations and repeated equals</li>
+                    <li>Mouse and full keyboard controls</li>
+                    <li>Calculation engine separated from the UI</li>
                   </ul>
+                  <TrackedLink
+                    href="https://github.com/durhamaustin9/CalculatorApp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-link"
+                    eventName="project_link_clicked"
+                    eventProperties={{ project: "quickcalc", destination: "source" }}
+                  >
+                    <IconBrandGithub size={18} stroke={1.8} aria-hidden="true" />
+                    Inspect the C# source
+                  </TrackedLink>
+                </div>
+                <div className="project-demo-wrap">
+                  <div className="demo-label">
+                    <span>Try it</span>
+                    <small>Click the keys or use your keyboard</small>
+                  </div>
+                  <QuickCalcDemo />
                 </div>
               </article>
-            ))}
-          </div>
 
-          <div className="foundation-block">
-            <div className="foundation-label">
-              <IconBriefcase2 size={20} stroke={1.7} />
-              Additional technical work
-            </div>
-            <div className="foundation-list">
-              {foundations.map((item) => (
-                <article key={item.title}>
-                  <span>{item.date}</span>
-                  <Title order={4}>{item.title}</Title>
-                  <Text className="foundation-company">{item.company}</Text>
-                  <Text>{item.detail}</Text>
-                </article>
-              ))}
+              <article className="project-card pirouter-card">
+                <div className="project-copy">
+                  <div className="project-kicker">
+                    <span className="project-number">03</span>
+                    <span className="demo-badge safe">SAFE DATA DEMO</span>
+                  </div>
+                  <div className="project-title-row">
+                    <IconRouter size={26} stroke={1.6} aria-hidden="true" />
+                    <h3>PiRouter</h3>
+                  </div>
+                  <p className="project-summary">
+                    A touch-first Raspberry Pi 5 console for network health,
+                    Time Machine storage, encrypted Restic archives, Tailscale,
+                    service endpoints, and system telemetry.
+                  </p>
+                  <p className="project-note">
+                    The production console stays private by design. This guided
+                    preview uses synthetic values and exposes no home-network data.
+                  </p>
+                  <TrackedLink
+                    href="https://github.com/durhamaustin9/PiRouter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-link"
+                    eventName="project_link_clicked"
+                    eventProperties={{ project: "pirouter", destination: "source" }}
+                  >
+                    <IconBrandGithub size={18} stroke={1.8} aria-hidden="true" />
+                    Inspect the system
+                  </TrackedLink>
+                </div>
+                <div className="project-demo-wrap">
+                  <div className="demo-label">
+                    <span>Guided console</span>
+                    <small>Switch views to inspect the information architecture</small>
+                  </div>
+                  <PiRouterDemo />
+                </div>
+              </article>
+
+              <article className="project-card displaylink-card">
+                <div className="project-copy">
+                  <div className="project-kicker">
+                    <span className="project-number">04</span>
+                    <span className="demo-badge research">RESEARCH DOSSIER</span>
+                  </div>
+                  <div className="project-title-row">
+                    <IconFlask2 size={28} stroke={1.6} aria-hidden="true" />
+                    <h3>DisplayLink clean-room research</h3>
+                  </div>
+                  <p className="project-summary">
+                    Original macOS research for a Plugable USB display dock:
+                    read-only hardware discovery, bounded structural parsers,
+                    synthetic transport models, and a deliberately gated state machine.
+                  </p>
+                  <p className="project-note light">
+                    This is not presented as a finished display driver. The public
+                    record separates observed facts from hypotheses and stops before
+                    undocumented hardware writes.
+                  </p>
+                  <div className="project-actions">
+                    <TrackedLink
+                      href="https://github.com/durhamaustin9/DisplayLink-Drivers-Reconstruct"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button project-primary acid"
+                      eventName="project_link_clicked"
+                      eventProperties={{ project: "displaylink", destination: "source" }}
+                    >
+                      Explore the repository
+                      <IconBrandGithub size={17} stroke={1.8} aria-hidden="true" />
+                    </TrackedLink>
+                    <TrackedLink
+                      href="https://github.com/durhamaustin9/DisplayLink-Drivers-Reconstruct/blob/main/docs/AUDIT-SUMMARY.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link light"
+                      eventName="project_link_clicked"
+                      eventProperties={{ project: "displaylink", destination: "audit" }}
+                    >
+                      <IconFileDescription size={18} stroke={1.8} aria-hidden="true" />
+                      Read the audit
+                    </TrackedLink>
+                  </div>
+                </div>
+                <div className="research-proof" aria-label="DisplayLink research evidence">
+                  <div className="terminal-topline">
+                    <IconTerminal2 size={17} stroke={1.7} aria-hidden="true" />
+                    <span>clean-room / current milestone</span>
+                    <i />
+                  </div>
+                  <div className="research-stats">
+                    <div><strong>100,000</strong><span>deterministic metadata mutations</span></div>
+                    <div><strong>15</strong><span>controlled capture observations</span></div>
+                    <div><strong>7</strong><span>USB interfaces mapped read-only</span></div>
+                    <div><strong>0</strong><span>real-hardware writes attempted</span></div>
+                  </div>
+                  <div className="research-gate">
+                    <span aria-hidden="true">✓</span>
+                    Stops at the protocol-undocumented gate
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
-        </Container>
-      </section>
+        </section>
 
-      <section id="capabilities" className="section-block capabilities-section">
-        <Container size="xl">
-          <div className="section-heading-row light-heading">
-            <div>
-              <span className="section-index">03 / CAPABILITIES</span>
-              <Title order={2}>One engineer. Multiple layers.</Title>
+        <section id="impact" className="section-block impact-section" aria-labelledby="impact-title">
+          <div className="site-container">
+            <div className="section-heading-row">
+              <div>
+                <span className="section-index">02 / SELECTED IMPACT</span>
+                <h2 id="impact-title">Proof in production.</h2>
+              </div>
+              <p>The strongest engineering work connects technical decisions to outcomes people can see, use, and measure.</p>
             </div>
-            <Text>
-              Comfortable moving from user workflow and interface to API,
-              database, deployment, and the operational system around it.
-            </Text>
+            <div className="impact-grid">
+              {impactStories.map((story) => {
+                const StoryIcon = story.icon;
+                return (
+                  <article className="impact-card" key={story.number}>
+                    <div className="impact-card-top">
+                      <span className="impact-icon" aria-hidden="true"><StoryIcon size={24} stroke={1.6} /></span>
+                      <span>{story.number}</span>
+                    </div>
+                    <span className="eyebrow">{story.eyebrow}</span>
+                    <h3>{story.title}</h3>
+                    <p>{story.description}</p>
+                    <div className="stack-tags">
+                      {story.stack.map((item) => <span key={item}>{item}</span>)}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
+        </section>
 
-          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={0} className="capability-grid">
-            {skillGroups.map((group) => {
-              const GroupIcon = group.icon;
-              return (
-                <article className="capability-item" key={group.title}>
-                  <ThemeIcon variant="outline" radius="xl" size={46}>
-                    <GroupIcon size={22} stroke={1.6} />
-                  </ThemeIcon>
-                  <div>
-                    <Title order={3}>{group.title}</Title>
-                    <Text>{group.copy}</Text>
+        <section id="experience" className="section-block experience-section" aria-labelledby="experience-title">
+          <div className="site-container">
+            <div className="section-heading-row">
+              <div>
+                <span className="section-index">03 / EXPERIENCE</span>
+                <h2 id="experience-title">Built across the stack.</h2>
+              </div>
+              <p>Four-plus years of professional engineering experience, grounded in an earlier career of customer service and operational ownership.</p>
+            </div>
+            <div className="timeline">
+              {roles.map((role, roleIndex) => (
+                <article className="timeline-row" key={role.company}>
+                  <div className="timeline-date">
+                    <span>{role.date}</span>
+                    <span className="timeline-node" aria-hidden="true" />
+                  </div>
+                  <div className="timeline-content">
+                    <div className="role-heading">
+                      <div>
+                        <h3>{role.title}</h3>
+                        <div className="company-line">
+                          <IconBuildingSkyscraper size={16} stroke={1.8} aria-hidden="true" />
+                          <span>{role.company}</span><span aria-hidden="true">·</span><span>{role.location}</span>
+                        </div>
+                      </div>
+                      <span className="role-count" aria-hidden="true">0{roleIndex + 1}</span>
+                    </div>
+                    <p className="role-intro">{role.intro}</p>
+                    <ul className="role-bullets">
+                      {role.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                    </ul>
                   </div>
                 </article>
-              );
-            })}
-          </SimpleGrid>
-
-          <div className="language-strip">
-            <span>CORE LANGUAGES</span>
-            <div>
-              {['Python', 'JavaScript', 'PHP', 'Java', 'Bash', 'SQL'].map((language) => (
-                <Badge key={language} radius="xl" variant="outline">{language}</Badge>
               ))}
             </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="section-block roots-section">
-        <Container size="xl">
-          <div className="roots-grid">
-            <div>
-              <span className="section-index">04 / FOUNDATION</span>
-              <Title order={2}>Technical instincts. Operational empathy.</Title>
+            <div className="foundation-block">
+              <div className="foundation-label">
+                <IconBriefcase2 size={20} stroke={1.7} aria-hidden="true" />
+                Additional technical work
+              </div>
+              <div className="foundation-list">
+                {foundations.map((item) => (
+                  <article key={item.title}>
+                    <span>{item.date}</span><h3>{item.title}</h3>
+                    <p className="foundation-company">{item.company}</p><p>{item.detail}</p>
+                  </article>
+                ))}
+              </div>
             </div>
-            <div className="roots-copy">
-              <Text>
-                Before writing software professionally, I worked directly with
-                customers, devices, inventory, and high-pressure operations at
-                Best Buy, Staples, Walmart, and Subway. That experience still
-                shapes how I build: understand the real workflow, explain the
-                tradeoffs clearly, and make the system dependable for the people
-                using it.
-              </Text>
-              <div className="education-row">
-                <div>
-                  <span>EDUCATION</span>
-                  <strong>High School Diploma</strong>
-                  <small>Additional college coursework</small>
-                </div>
-                <div>
-                  <span>LEADERSHIP</span>
-                  <strong>Eagle Scout</strong>
-                  <small>Boy Scouts of America · 2017</small>
+          </div>
+        </section>
+
+        <section id="capabilities" className="section-block capabilities-section" aria-labelledby="capabilities-title">
+          <div className="site-container">
+            <div className="section-heading-row light-heading">
+              <div>
+                <span className="section-index">04 / CAPABILITIES</span>
+                <h2 id="capabilities-title">One engineer. Multiple layers.</h2>
+              </div>
+              <p>Comfortable moving from user workflow and interface to API, database, deployment, and the operational system around it.</p>
+            </div>
+            <div className="capability-grid">
+              {skillGroups.map((group) => {
+                const GroupIcon = group.icon;
+                return (
+                  <article className="capability-item" key={group.title}>
+                    <span className="capability-icon" aria-hidden="true"><GroupIcon size={22} stroke={1.6} /></span>
+                    <div><h3>{group.title}</h3><p>{group.copy}</p></div>
+                  </article>
+                );
+              })}
+            </div>
+            <div className="language-strip">
+              <span>CORE LANGUAGES</span>
+              <div>{['Python', 'JavaScript', 'PHP', 'Java', 'Bash', 'SQL'].map((language) => <span key={language}>{language}</span>)}</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-block roots-section" aria-labelledby="foundation-title">
+          <div className="site-container">
+            <div className="roots-grid">
+              <div>
+                <span className="section-index">05 / FOUNDATION</span>
+                <h2 id="foundation-title">Technical instincts. Operational empathy.</h2>
+              </div>
+              <div className="roots-copy">
+                <p>
+                  Before writing software professionally, I worked directly with customers, devices, inventory, and high-pressure operations at Best Buy, Staples, Walmart, and Subway. That experience still shapes how I build: understand the real workflow, explain the tradeoffs clearly, and make the system dependable for the people using it.
+                </p>
+                <div className="education-row">
+                  <div><span>EDUCATION</span><strong>High School Diploma</strong><small>Additional college coursework</small></div>
+                  <div><span>LEADERSHIP</span><strong>Eagle Scout</strong><small>Boy Scouts of America · 2017</small></div>
                 </div>
               </div>
             </div>
           </div>
-        </Container>
-      </section>
+        </section>
 
-      <section className="contact-section">
-        <Container size="xl">
-          <div className="contact-panel">
-            <div>
-              <span className="eyebrow">LET&apos;S BUILD SOMETHING USEFUL</span>
-              <Title order={2}>Have a hard operational problem?</Title>
-              <Text>
-                I&apos;d love to hear what isn&apos;t working—and explore what the right
-                software could change.
-              </Text>
+        <section className="contact-section" aria-labelledby="contact-title">
+          <div className="site-container">
+            <div className="contact-panel">
+              <div>
+                <span className="eyebrow">LET&apos;S BUILD SOMETHING USEFUL</span>
+                <h2 id="contact-title">Need an engineer who follows the problem all the way through?</h2>
+                <p>I bring product judgment, full-stack execution, cloud experience, and the operational ownership to make software dependable after launch.</p>
+              </div>
+              <TrackedLink
+                href="mailto:contact@austindurham.info"
+                className="button contact-button"
+                eventName="contact_cta_clicked"
+                eventProperties={{ placement: "footer" }}
+              >
+                <IconMail size={20} stroke={1.8} aria-hidden="true" />Email Austin
+                <IconArrowUpRight size={20} stroke={1.8} aria-hidden="true" />
+              </TrackedLink>
             </div>
-            <Button
-              component="a"
-              href="mailto:contact@austindurham.info"
-              size="xl"
-              radius="xl"
-              rightSection={<IconArrowUpRight size={20} stroke={1.8} />}
-              className="contact-button"
-              onClick={() => posthog.capture("contact_cta_clicked", { placement: "footer" })}
-            >
-              contact@austindurham.info
-            </Button>
           </div>
-        </Container>
-      </section>
+        </section>
+      </main>
 
       <footer className="footer">
-        <Container size="xl" className="footer-inner">
-          <div>
-            <strong>Austin Durham</strong>
-            <span>Full-Stack Software Engineer</span>
-          </div>
-          <Group gap="xs" className="social-links">
-            <Anchor
+        <div className="site-container footer-inner">
+          <div className="footer-identity"><strong>Austin Durham</strong><span>Full-Stack Software Engineer · Scottsdale, AZ</span></div>
+          <div className="social-links">
+            <TrackedLink
               href="https://www.linkedin.com/in/austin-durham-031473186/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Austin Durham on LinkedIn"
-              onClick={() => posthog.capture("social_profile_clicked", { platform: "linkedin" })}
-            >
-              <IconBrandLinkedin size={20} stroke={1.7} />
-            </Anchor>
-            <Anchor
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Austin Durham on LinkedIn, opens in a new tab"
+              eventName="social_profile_clicked" eventProperties={{ platform: "linkedin" }}
+            ><IconBrandLinkedin size={20} stroke={1.7} aria-hidden="true" /></TrackedLink>
+            <TrackedLink
               href="https://github.com/durhamaustin9"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Austin Durham on GitHub"
-              onClick={() => posthog.capture("social_profile_clicked", { platform: "github" })}
-            >
-              <IconBrandGithub size={20} stroke={1.7} />
-            </Anchor>
-          </Group>
-          <span className="footer-note">Designed for clarity. Built for impact.</span>
-        </Container>
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Austin Durham on GitHub, opens in a new tab"
+              eventName="social_profile_clicked" eventProperties={{ platform: "github" }}
+            ><IconBrandGithub size={20} stroke={1.7} aria-hidden="true" /></TrackedLink>
+          </div>
+          <span className="footer-note">Public work. Production impact. End-to-end ownership.</span>
+        </div>
       </footer>
-    </Box>
+    </div>
   );
 }

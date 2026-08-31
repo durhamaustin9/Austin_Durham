@@ -1,8 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { headers } from "next/headers";
-import { MantineSiteProvider } from "./mantine-provider";
-import "@mantine/core/styles.css";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,52 +13,56 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  const origin = `${protocol}://${host}`;
-  const title = "Austin Durham | Full-Stack Software Engineer";
-  const description =
-    "Full-stack software engineer building production applications, cloud services, internal platforms, and business systems that deliver measurable impact.";
-
-  return {
-    metadataBase: new URL(origin),
-    title,
-    description,
-    keywords: [
-      "Austin Durham",
-      "Full-Stack Software Engineer",
-      "Next.js Developer",
-      "Cloud Engineer",
-      "AWS",
-      "Scottsdale Arizona",
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  applicationName: "Austin Durham Portfolio",
+  alternates: { canonical: "/" },
+  keywords: [
+    "Austin Durham",
+    "Full-Stack Software Engineer",
+    "Next.js Developer",
+    "Cloud Engineer",
+    "AWS",
+    "React",
+    "Node.js",
+    "Scottsdale Arizona",
+  ],
+  authors: [{ name: "Austin Durham", url: SITE_URL }],
+  creator: "Austin Durham",
+  publisher: "Austin Durham",
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    type: "profile",
+    firstName: "Austin",
+    lastName: "Durham",
+    username: "durhamaustin9",
+    siteName: "Austin Durham Portfolio",
+    locale: "en_US",
+    url: "/",
+    images: [
+      {
+        url: "/og.png",
+        width: 1731,
+        height: 909,
+        alt: "Austin Durham — Full-Stack Software Engineer",
+      },
     ],
-    authors: [{ name: "Austin Durham" }],
-    creator: "Austin Durham",
-    icons: {},
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: origin,
-      images: [
-        {
-          url: `${origin}/og.png`,
-          width: 1731,
-          height: 909,
-          alt: "Austin Durham — Full-Stack Software Engineer",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [`${origin}/og.png`],
-    },
-  };
-}
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/og.png"],
+  },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#f5f3ec",
+};
 
 export default function RootLayout({
   children,
@@ -70,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <MantineSiteProvider>{children}</MantineSiteProvider>
+        {children}
       </body>
     </html>
   );
