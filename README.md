@@ -3,10 +3,12 @@
 A responsive résumé and professional portfolio site for Austin Durham, a
 full-stack software engineer focused on cloud, platform, and business systems.
 The first major section gives recruiters direct, inspectable evidence through
-four public projects instead of relying only on résumé claims.
+five substantive projects instead of relying only on résumé claims.
 
 ## Project presentation
 
+- **Galileo-AI** leads with a private-source case study covering the system
+  architecture, explicit security boundaries, and dated v6 verification results.
 - **BeatFlight** links to the deployed browser game and its public source.
 - **QuickCalc** includes a keyboard-accessible web sampler that mirrors the
   public C# and Avalonia desktop application.

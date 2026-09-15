@@ -63,6 +63,10 @@ test("renders Austin Durham's portfolio with standard Next.js", async () => {
   assert.match(html, /<title>Austin Durham \| Full-Stack Software Engineer<\/title>/i);
   assert.match(html, /I build software that makes the business/);
   assert.match(html, /Built to be inspected/);
+  assert.match(html, /Galileo-AI/);
+  assert.match(html, /Private source by design/);
+  assert.match(html, /448/);
+  assert.match(html, /14,508/);
   assert.match(html, /BeatFlight/);
   assert.match(html, /QuickCalc/);
   assert.match(html, /PiRouter/);
@@ -90,6 +94,7 @@ test("renders Austin Durham's portfolio with standard Next.js", async () => {
     html,
     /href="https:\/\/github\.com\/durhamaustin9\/DisplayLink-Drivers-Reconstruct"/,
   );
+  assert.doesNotMatch(html, /href="https?:\/\/[^"]*galileo/i);
   assert.doesNotMatch(html, /Download résumé/);
   assert.doesNotMatch(html, /vinext|vite|mantine|codex-preview|Your site is taking shape/i);
 });
