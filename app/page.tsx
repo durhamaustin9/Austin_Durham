@@ -2,17 +2,20 @@ import Image from "next/image";
 import {
   IconArrowDown,
   IconArrowUpRight,
+  IconBrain,
   IconBrandGithub,
   IconBrandLinkedin,
   IconBriefcase2,
   IconBuildingSkyscraper,
   IconCloudCode,
   IconCode,
+  IconCpu,
   IconDatabase,
   IconDeviceDesktop,
   IconExternalLink,
   IconFileDescription,
   IconFlask2,
+  IconLock,
   IconMail,
   IconMapPin,
   IconPlayerPlay,
@@ -72,13 +75,13 @@ const skillGroups = [
   },
   {
     icon: IconDatabase,
-    title: "Data systems",
-    copy: "PostgreSQL, MySQL, MongoDB, Prisma, Sequelize, SQL, data modeling, query optimization",
+    title: "Data & AI systems",
+    copy: "PostgreSQL, MySQL, MongoDB, SQLite, data modeling, full-text search, ONNX embeddings, retrieval-augmented generation, evaluation",
   },
   {
     icon: IconServer2,
     title: "Cloud & platform",
-    copy: "AWS Lambda, EC2, RDS, Docker, CI/CD, telemetry, observability, distributed systems",
+    copy: "AWS Lambda, EC2, RDS, Docker, Ollama, CI/CD, telemetry, observability, distributed systems",
   },
   {
     icon: IconUsersGroup,
@@ -159,6 +162,9 @@ const personJsonLd = {
     "Python",
     "PostgreSQL",
     "AWS",
+    "Applied AI engineering",
+    "Local language models",
+    "Retrieval-augmented generation",
     "Cloud infrastructure",
     "Business systems",
   ],
@@ -220,7 +226,7 @@ export default function Home() {
                 <div className="hero-actions">
                   <a href="#projects" className="button primary-cta">
                     <IconCode size={19} stroke={1.8} aria-hidden="true" />
-                    See public work
+                    See selected work
                   </a>
                   <TrackedLink
                     href="/Austin-Durham-Resume.pdf"
@@ -277,21 +283,107 @@ export default function Home() {
           <div className="site-container">
             <div className="section-heading-row">
               <div>
-                <span className="section-index">01 / PUBLIC WORK</span>
+                <span className="section-index">01 / SELECTED WORK</span>
                 <h2 id="projects-title">Built to be inspected.</h2>
               </div>
               <p>
-                Four public repositories spanning product engineering, native
-                desktop development, infrastructure, and clean-room systems
-                research—with honest demos for work that cannot safely be hosted.
+                Five projects spanning applied AI, product engineering, native
+                development, infrastructure, and clean-room research—with public
+                source where safe and concrete evidence where systems must stay private.
               </p>
             </div>
 
             <div className="project-grid">
-              <article className="project-card beatflight-card">
+              <article id="galileo" className="project-card galileo-card">
                 <div className="project-copy">
                   <div className="project-kicker">
                     <span className="project-number">01</span>
+                    <span className="demo-badge private">PRIVATE CASE STUDY</span>
+                  </div>
+                  <div className="project-title-row">
+                    <IconBrain size={29} stroke={1.6} aria-hidden="true" />
+                    <h3>Galileo-AI</h3>
+                  </div>
+                  <p className="galileo-role">
+                    Sep 2026—present · Project owner · System designer · AI-assisted developer
+                  </p>
+                  <p className="project-summary">
+                    I designed and built a private, self-hosted AI development
+                    platform that connects local language models to coding tools,
+                    persistent project context, hybrid documentation retrieval,
+                    scheduled workflows, and evidence-based verification.
+                  </p>
+                  <dl className="project-facts">
+                    <div>
+                      <dt>Built with</dt>
+                      <dd>Python · TypeScript · Ollama · SQLite · ONNX · Docker</dd>
+                    </div>
+                    <div>
+                      <dt>Engineering focus</dt>
+                      <dd>Reliable tool use, bounded recovery, approval gates, and shared-GPU operation</dd>
+                    </div>
+                  </dl>
+                  <p className="galileo-private-note">
+                    <IconLock size={17} stroke={1.8} aria-hidden="true" />
+                    <span>
+                      <strong>Private source by design.</strong> Architecture and
+                      dated results are shown without exposing code, credentials,
+                      personal data, or internal access.
+                    </span>
+                  </p>
+                </div>
+
+                <div className="galileo-system" aria-label="Galileo-AI system architecture and documented results">
+                  <div className="galileo-system-top">
+                    <div>
+                      <IconBrain size={18} stroke={1.6} aria-hidden="true" />
+                      <span>galileo / local-first stack</span>
+                    </div>
+                    <span><i aria-hidden="true" />v6 verified</span>
+                  </div>
+
+                  <div className="galileo-flow">
+                    <div className="galileo-node">
+                      <span><IconDeviceDesktop size={17} stroke={1.7} aria-hidden="true" />Interfaces</span>
+                      <strong>Desktop coding + browser chat</strong>
+                      <small>Purpose-built tools with deliberately different permissions</small>
+                    </div>
+                    <span className="galileo-connector" aria-hidden="true" />
+                    <div className="galileo-node">
+                      <span><IconDatabase size={17} stroke={1.7} aria-hidden="true" />Context & knowledge</span>
+                      <strong>Project state + memory + local RAG</strong>
+                      <small>Source-linked retrieval, scoped records, and owner-reviewed procedures</small>
+                    </div>
+                    <span className="galileo-connector" aria-hidden="true" />
+                    <div className="galileo-node">
+                      <span><IconCpu size={17} stroke={1.7} aria-hidden="true" />Execution & evidence</span>
+                      <strong>Local inference + isolated checks</strong>
+                      <small>Actual commands and outcomes outrank model confidence</small>
+                    </div>
+                  </div>
+
+                  <div className="galileo-proof-grid">
+                    <div>
+                      <strong>448</strong>
+                      <span>passing software checks in the documented v6 release</span>
+                    </div>
+                    <div>
+                      <strong>14,508</strong>
+                      <span>searchable chunks across 296 indexed technical documents</span>
+                    </div>
+                  </div>
+
+                  <div className="galileo-system-foot">
+                    <IconShieldCheck size={17} stroke={1.7} aria-hidden="true" />
+                    Private inference · approval-gated learning · bounded recovery
+                  </div>
+                </div>
+              </article>
+
+              <article className="project-card beatflight-card">
+                <div className="project-copy">
+                  <div className="project-kicker">
+                    <span className="project-number">02</span>
                     <span className="demo-badge live">LIVE WEB APP</span>
                   </div>
                   <div className="project-title-row">
@@ -362,7 +454,7 @@ export default function Home() {
               <article className="project-card quickcalc-card">
                 <div className="project-copy">
                   <div className="project-kicker">
-                    <span className="project-number">02</span>
+                    <span className="project-number">03</span>
                     <span className="demo-badge">INTERACTIVE SAMPLER</span>
                   </div>
                   <div className="project-title-row">
@@ -403,7 +495,7 @@ export default function Home() {
               <article className="project-card pirouter-card">
                 <div className="project-copy">
                   <div className="project-kicker">
-                    <span className="project-number">03</span>
+                    <span className="project-number">04</span>
                     <span className="demo-badge safe">SAFE DATA DEMO</span>
                   </div>
                   <div className="project-title-row">
@@ -443,7 +535,7 @@ export default function Home() {
               <article className="project-card displaylink-card">
                 <div className="project-copy">
                   <div className="project-kicker">
-                    <span className="project-number">04</span>
+                    <span className="project-number">05</span>
                     <span className="demo-badge research">RESEARCH DOSSIER</span>
                   </div>
                   <div className="project-title-row">
@@ -612,7 +704,7 @@ export default function Home() {
             </div>
             <div className="language-strip">
               <span>CORE LANGUAGES</span>
-              <div>{['Python', 'JavaScript', 'PHP', 'Java', 'Bash', 'SQL'].map((language) => <span key={language}>{language}</span>)}</div>
+              <div>{['Python', 'TypeScript', 'JavaScript', 'C#', 'PHP', 'Java', 'Bash', 'SQL'].map((language) => <span key={language}>{language}</span>)}</div>
             </div>
           </div>
         </section>
@@ -676,7 +768,7 @@ export default function Home() {
               eventName="social_profile_clicked" eventProperties={{ platform: "github" }}
             ><IconBrandGithub size={20} stroke={1.7} aria-hidden="true" /></TrackedLink>
           </div>
-          <span className="footer-note">Public work. Production impact. End-to-end ownership.</span>
+          <span className="footer-note">Selected work. Production impact. End-to-end ownership.</span>
         </div>
       </footer>
     </div>
